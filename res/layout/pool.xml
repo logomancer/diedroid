@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" android:orientation="vertical">
+
+
+<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="center_horizontal" android:id="@+id/poolDiceLayout">
+<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="number" android:layout_marginRight="10sp" android:textSize="14pt" android:minEms="1" android:id="@+id/poolDiceNum" android:layout_gravity="center_vertical" android:text="1" android:nextFocusRight="@+id/poolDiceSides" android:nextFocusDown="@+id/poolWin" android:selectAllOnFocus="true" android:isScrollContainer="true" android:fitsSystemWindows="true"></EditText>
+
+
+<Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:entries="@array/SidesArray" android:prompt="@string/SidesSpinPrompt" android:id="@id/poolDiceSides" android:nextFocusDown="@+id/poolFail" android:nextFocusLeft="@id/poolDiceNum" android:isScrollContainer="true" android:fitsSystemWindows="true"></Spinner>
+</LinearLayout>
+
+<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/poolSuccessLayout" android:layout_gravity="center_horizontal"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#00FF00" android:layout_marginRight="5sp" android:textSize="11pt" android:id="@+id/poolWinText" android:text="@string/poolWinStr" android:layout_gravity="center_vertical" android:fitsSystemWindows="true" android:focusable="false" android:focusableInTouchMode="false"></TextView>
+<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:minEms="1" android:layout_marginLeft="3sp" android:layout_marginRight="8sp" android:textSize="14pt" android:layout_gravity="center_vertical" android:inputType="number" android:text="0" android:nextFocusUp="@id/poolDiceNum" android:id="@id/poolWin" android:selectAllOnFocus="true" android:fitsSystemWindows="true" android:nextFocusRight="@id/poolFail" android:nextFocusDown="@+id/poolFail"></EditText>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FF0000" android:layout_marginRight="5sp" android:layout_marginLeft="8sp" android:textSize="11pt" android:id="@+id/poolFailText" android:text="@string/poolFailStr" android:layout_gravity="center_vertical" android:fitsSystemWindows="true" android:focusable="false" android:focusableInTouchMode="false"></TextView>
+<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:minEms="1" android:layout_marginLeft="3sp" android:textSize="14pt" android:layout_gravity="center_vertical" android:inputType="number" android:text="0" android:nextFocusUp="@id/poolDiceSides" android:nextFocusLeft="@id/poolWin" android:id="@id/poolFail" android:selectAllOnFocus="true" android:fitsSystemWindows="true" android:nextFocusDown="@+id/poolRollButton"></EditText>
+</LinearLayout><Button android:layout_height="wrap_content" android:textSize="14pt" android:id="@id/poolRollButton" android:layout_width="fill_parent" android:fitsSystemWindows="true" android:text="@string/RollButtonText" android:nextFocusUp="@id/poolWin"></Button><View android:layout_width="wrap_content" android:layout_height="5sp" android:background="#ababab" android:id="@+id/poolHLine"></View><TextView android:layout_height="wrap_content" android:textSize="14pt" android:id="@+id/poolResultsTitle" android:text="@string/poolResultsTitleStr" android:layout_width="fill_parent"></TextView><GridView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/poolResultsGrid" android:focusable="false" android:focusableInTouchMode="false" android:isScrollContainer="true" android:smoothScrollbar="true" android:numColumns="5" android:verticalSpacing="5sp" android:gravity="center" android:fitsSystemWindows="true"></GridView>
+
+
+</LinearLayout>
