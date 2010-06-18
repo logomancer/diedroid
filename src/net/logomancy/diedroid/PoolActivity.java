@@ -69,7 +69,7 @@ public class PoolActivity extends Activity implements OnClickListener {
 			// ...as is a success or failure value of greater than the number of sides on the dice 
 			Toast.makeText(this, R.string.errorWinFailOverflow, Toast.LENGTH_SHORT).show();
 		}
-		else if((winValue < 0) && (winValue < failValue)) {
+		else if((winValue > 0) && (winValue < failValue)) {
 			// success and failure values are overlapping
 			Toast.makeText(this, R.string.errorWinFailOverlap, Toast.LENGTH_SHORT).show();
 		}
