@@ -16,5 +16,4 @@
 <activity android:screenOrientation="portrait" android:name="StatsActivity"></activity>
 </application>
     <uses-sdk android:minSdkVersion="3" />
-
 </manifest> 
