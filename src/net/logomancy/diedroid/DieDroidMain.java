@@ -16,12 +16,18 @@
 
 package net.logomancy.diedroid;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class DieDroidMain extends ListActivity {
@@ -57,4 +63,46 @@ public class DieDroidMain extends ListActivity {
     		break;
     	}
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.optionmenu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menuAbout:
+	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    	builder.setMessage(R.string.menuAboutText)
+	    	       .setCancelable(false)
+	    	       .setTitle(R.string.menuAboutTitle)
+	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
+	    	                startActivity(new Intent("android.intent.action.VIEW", url));
+	    	                
+	    	           }
+	    	       })
+	    	       .setNeutralButton(R.string.menuAboutLicBtn, new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	        	   Uri url = Uri.parse(getString(R.string.urlLicense));
+	    	               startActivity(new Intent("android.intent.action.VIEW", url));
+	    	           }
+	    	       })
+	    	       .setNegativeButton(R.string.menuAboutCloseBtn, new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	                dialog.cancel();
+	    	           }
+	    	       });
+	    	AlertDialog about = builder.create();
+	    	about.show();
+	    	return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
 }

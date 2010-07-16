@@ -15,5 +15,5 @@
 <activity android:screenOrientation="portrait" android:name="PoolActivity"></activity>
 <activity android:screenOrientation="portrait" android:name="StatsActivity"></activity>
 </application>
-    <uses-sdk android:minSdkVersion="3" />
+    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="8" />
 </manifest> 
