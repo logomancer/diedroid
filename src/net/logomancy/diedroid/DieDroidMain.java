@@ -58,6 +58,10 @@ public class DieDroidMain extends ListActivity {
     		newActivity.setClassName(this, "net.logomancy.diedroid.PoolActivity");
     		startActivity(newActivity);
     		break;
+    	case 3: // Pass It On
+    		newActivity.setClassName(this, "net.logomancy.diedroid.PIOActivity");
+    		startActivity(newActivity);
+    		break;
     	default: //not implemented yet
     		Toast.makeText(this, R.string.errorNotImplemented, Toast.LENGTH_SHORT).show(); 
     		break;

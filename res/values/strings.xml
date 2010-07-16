@@ -20,7 +20,8 @@
 		<item>Dice Roller</item>
 		<item>Ability Score Roller</item>
 		<item>Dice Pool Roller</item>
-	</string-array>
+	<item>Pass It On</item>
+</string-array>
 	<string name="RollButtonText">Roll</string>
 	<string name="errorNotImplemented">This has not been implemented yet.</string>
 	<string name="errorInvalidEntry">One or more parameters is invalid.</string>
@@ -51,4 +52,6 @@
 	<string name="menuAboutCloseBtn">Close</string>
 <string name="urlLicense">http://www.gnu.org/licenses/gpl-3.0-standalone.html</string>
 <string name="urlWebsite">https://code.google.com/p/diedroid/</string>
+<string name="pioDiceCaptionStr">Dice:</string>
+<string name="pioErrNoDice">Please select one, two, or three dice.</string>
 </resources>

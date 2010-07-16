@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="20dp" android:layout_marginTop="40dp">
+
+<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pioDieOne" android:minHeight="96dp" android:minWidth="96dp" android:layout_margin="5dp" android:src="#000"></ImageView>
+<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pioDieTwo" android:minHeight="96dp" android:minWidth="96dp" android:layout_margin="5dp" android:src="#000"></ImageView>
+<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pioDieThree" android:minHeight="96dp" android:minWidth="96dp" android:layout_margin="5dp" android:src="#000"></ImageView></LinearLayout>
+
+<LinearLayout android:id="@+id/LinearLayout02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:layout_marginTop="20dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pioDiceCaption" android:text="@string/pioDiceCaptionStr" android:textSize="28dp" android:layout_margin="5dp"></TextView>
+<RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/pioDiceGroup"><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" android:id="@+id/pio1Dice" android:textSize="28dp" android:layout_margin="5dp"></RadioButton>
+<RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" android:id="@+id/pio2Dice" android:textSize="28dp" android:layout_margin="5dp"></RadioButton>
+<RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:id="@+id/pio3Dice" android:textSize="28dp" android:layout_margin="5dp"></RadioButton>
+</RadioGroup>
+</LinearLayout>
+<Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/RollButtonText" android:textSize="36dp" android:id="@+id/pioRollBtn" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"></Button>
+
+</LinearLayout>
