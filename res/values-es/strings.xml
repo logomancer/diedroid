@@ -15,29 +15,46 @@
 		<item>d12</item>
 		<item>d20</item>
 		<item>d100</item>
-		
+
 	</string-array>
 	<string-array name="activityListChoices">
 		<item>Tirador de Dados</item>
 		<item>Tirador de Puntuación de Habilidades</item>
-	<item>Tirador de Reserva de Dados</item>
-</string-array>
+		<item>Tirador de Reserva de Dados</item>
+		<item>Pass It On</item>
+	</string-array>
 	<string name="RollButtonText">Tirar</string>
 	<string name="errorNotImplemented">Esto no se ha implementado todavía.</string>
 	<string name="errorInvalidEntry">Uno o más parámetros no son válidos.</string>
-<string name="poolResultsTitleStr">Resultas:</string>
+	<string name="poolResultsTitleStr">Resultas:</string>
 
-<string name="poolWinStr">Éxito:</string>
-<string name="poolFailStr">Falla:</string>
-<string name="errorWinFailOverlap">Los valores del Éxito y de la Falla no se pueden solapar.</string>
-<string name="errorWinFailNegative">El Éxito y la Falla no se pueden tener valores negativos. Utilice 0 para deshabilitar.</string>
-<string name="errorNotEnoughDice">Debe tirar un dado por lo menos.</string>
-<string name="errorWinFailOverflow">Los valores del Éxito y de la Falla no se pueden exceder el número de caras. Utilice 0 para deshabilitar.</string>
-<string name="poolSuccesses">Éxitos: </string>
-<string name="poolFailures">Fallas: </string>
-<string-array name="statsRollMethods"><item>4d6, eliminar el más bajo</item>
-<item>Directamente 3d6</item>
-<item>1d6 + 14</item>
-</string-array>
-<string name="statsResultTitle">Estadísticas:</string>
+	<string name="poolWinStr">Éxito:</string>
+	<string name="poolFailStr">Falla:</string>
+	<string name="errorWinFailOverlap">Los valores del Éxito y de la Falla no se pueden
+		solapar.</string>
+	<string name="errorWinFailNegative">El Éxito y la Falla no se pueden tener valores
+		negativos. Utilice 0 para deshabilitar.</string>
+	<string name="errorNotEnoughDice">Debe tirar un dado por lo menos.</string>
+	<string name="errorWinFailOverflow">Los valores del Éxito y de la Falla no se pueden
+		exceder el número de caras. Utilice 0 para deshabilitar.</string>
+	<string name="poolSuccesses">Éxitos: </string>
+	<string name="poolFailures">Fallas: </string>
+	<string-array name="statsRollMethods">
+		<item>4d6, eliminar el más bajo</item>
+		<item>Directamente 3d6</item>
+		<item>1d6 + 14</item>
+	</string-array>
+	<string name="statsResultTitle">Estadísticas:</string>
+	<string name="menuAbout">Sobre</string>
+	<string name="menuAboutTitle">DieDroid 1.1.0</string>
+
+	<string name="menuAboutText">DieDroid copyright 2010 Andrew Mike con una
+		licencia de GNU GPL. La aplicación de Mersenne Twister escrito por
+		Sean Luke con una licencia de BSD.</string>
+	<string name="menuAboutLicBtn">Licencia</string>
+	<string name="menuAboutSiteBtn">Sitio Web</string>
+	<string name="menuAboutCloseBtn">Cerrar</string>
+	<string name="urlLicense">http://www.viti.es/gnu/licenses/gpl.html</string>
+	<string name="pioDiceCaptionStr">Dados:</string>
+	<string name="pioErrNoDice">Por favor seleccione una, dos o tres dados.</string>
 </resources>

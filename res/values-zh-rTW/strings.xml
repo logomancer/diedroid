@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-		<string name="app_name">DieDroid</string>
-		<string name="rollActivity">滾筒</string>
-		<string name="rollResultTitleStr">結果：</string>
-		<string name="rollResultStr"/>
-		<string name="SidesSpinPrompt">選取骰子類型</string>
-		<string-array name="SidesArray">
-			<item>d2</item>
-			<item>d3</item>
-			<item>d4</item>
-			<item>d6</item>
-			<item>d8</item>
-			<item>d10</item>
-			<item>d12</item>
-			<item>d20</item>
-			<item>d100</item>
-	
-		</string-array>
-		<string-array name="activityListChoices">
-			<item>骰子滾筒</item>
-			<item>能力分數滾筒</item>
-		<item>骰子池滾筒</item>
+	<string name="app_name">DieDroid</string>
+	<string name="rollActivity">滾筒</string>
+	<string name="rollResultTitleStr">結果：</string>
+	<string name="rollResultStr" />
+	<string name="SidesSpinPrompt">選取骰子類型</string>
+	<string-array name="SidesArray">
+		<item>d2</item>
+		<item>d3</item>
+		<item>d4</item>
+		<item>d6</item>
+		<item>d8</item>
+		<item>d10</item>
+		<item>d12</item>
+		<item>d20</item>
+		<item>d100</item>
+
 	</string-array>
-		<string name="RollButtonText">投骰子</string>
-		<string name="errorNotImplemented">這還沒有得到執行。</string>
-		<string name="errorInvalidEntry">一個或多個參數是無效的。</string>
+	<string-array name="activityListChoices">
+		<item>骰子滾筒</item>
+		<item>能力分數滾筒</item>
+		<item>骰子池滾筒</item>
+		<item>Pass It On</item>
+	</string-array>
+	<string name="RollButtonText">投骰子</string>
+	<string name="errorNotImplemented">這還沒有得到執行。</string>
+	<string name="errorInvalidEntry">一個或多個參數是無效的。</string>
 	<string name="poolResultsTitleStr">結果：</string>
-	
+
 	<string name="poolWinStr">成功：</string>
 	<string name="poolFailStr">失敗：</string>
 	<string name="errorWinFailOverlap">成功和失敗的值不能相等。</string>
@@ -35,9 +36,11 @@
 	<string name="errorWinFailOverflow">成功數和失敗數的值不能超過邊數。使用0禁用之。</string>
 	<string name="poolSuccesses">成功數：</string>
 	<string name="poolFailures">失敗數：</string>
-	<string-array name="statsRollMethods"><item>4個d6，去掉最小的一個</item><item>直接投3個d6</item>
-	
-	<item>1d6 + 14</item>
+	<string-array name="statsRollMethods">
+		<item>4個d6，去掉最小的一個</item>
+		<item>直接投3個d6</item>
+
+		<item>1d6 + 14</item>
 	</string-array>
 	<string name="statsResultTitle">統計：</string>
 </resources>
