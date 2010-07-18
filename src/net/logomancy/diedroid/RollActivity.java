@@ -67,7 +67,7 @@ public class RollActivity extends Activity implements OnClickListener {
 	    	               startActivity(new Intent("android.intent.action.VIEW", url));
 	    	           }
 	    	       })
-	    	       .setNegativeButton(R.string.menuAboutCloseBtn, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -75,6 +75,18 @@ public class RollActivity extends Activity implements OnClickListener {
 	    	AlertDialog about = builder.create();
 	    	about.show();
 	    	return true;
+	    case R.id.menuHelp:
+	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+	    	builder1.setMessage(R.string.menuHelpDice)
+	    	       .setCancelable(false)
+	    	       .setTitle(R.string.menuHelp)
+	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	                dialog.cancel();
+	    	           }
+	    	       });
+	    	AlertDialog help = builder1.create();
+	    	help.show();
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }

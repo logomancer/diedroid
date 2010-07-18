@@ -97,13 +97,16 @@ public class DieDroidMain extends ListActivity {
 	    	               startActivity(new Intent("android.intent.action.VIEW", url));
 	    	           }
 	    	       })
-	    	       .setNegativeButton(R.string.menuAboutCloseBtn, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
 	    	       });
 	    	AlertDialog about = builder.create();
 	    	about.show();
+	    	return true;
+	    case R.id.menuHelp:
+	    	Toast.makeText(this, R.string.helpMainText, Toast.LENGTH_SHORT).show();
 	    	return true;
 	    default:
 	        return super.onOptionsItemSelected(item);

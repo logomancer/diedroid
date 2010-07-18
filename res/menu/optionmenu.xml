@@ -2,4 +2,5 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:title="@string/menuAbout" android:icon="@drawable/menu_info" android:id="@+id/menuAbout"></item>
+<item android:id="@+id/menuHelp" android:title="@string/menuHelp" android:icon="@drawable/menu_help"></item>
 </menu>
