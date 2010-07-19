@@ -5,7 +5,7 @@
 
 <TextView android:id="@+id/rollResultTitle" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/rollResultTitleStr" android:textSize="40dp"></TextView>
 
-<TextView android:id="@+id/rollResult" android:text="@string/rollResultStr" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginBottom="10dp" android:layout_marginTop="5dp" android:textSize="128dp"></TextView>
+<TextView android:id="@+id/rollResult" android:text="@string/rollResultStr" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginBottom="10dp" android:layout_marginTop="5dp" android:textSize="120dp"></TextView>
 
 
 
@@ -18,5 +18,5 @@
 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="x" android:focusable="false" android:id="@+id/rollDieTimes" android:layout_gravity="center_vertical" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:textSize="30dp"></TextView>
 <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:minEms="1" android:nextFocusDown="@+id/rollRollButton" android:nextFocusRight="@id/rollRollButton" android:text="1" android:id="@id/rollMult" android:nextFocusLeft="@id/rollAdd" android:nextFocusUp="@id/rollAdd" android:layout_gravity="center_vertical" android:inputType="numberSigned" android:selectAllOnFocus="true" android:layout_marginLeft="5dp" android:layout_marginRight="10dp" android:textSize="30dp"></EditText>
 </LinearLayout>
-<Button android:layout_width="fill_parent" android:id="@id/rollRollButton" android:nextFocusUp="@id/rollMult" android:nextFocusLeft="@id/rollMult" android:layout_height="wrap_content" android:text="@string/RollButtonText" android:layout_marginTop="5dp" android:textSize="40dp"></Button>
+<Button android:layout_width="fill_parent" android:id="@id/rollRollButton" android:nextFocusUp="@id/rollMult" android:nextFocusLeft="@id/rollMult" android:layout_height="wrap_content" android:text="@string/RollButtonText" android:layout_marginTop="5dp" android:textSize="36dp"></Button>
 </LinearLayout>

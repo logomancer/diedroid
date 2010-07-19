@@ -45,8 +45,8 @@
 	<string name="menuHelp">Help</string>
 	<string name="menuAboutTitle">DieDroid 1.1.0</string>
 	<string name="menuAboutText">DieDroid copyright 2010 Andrew Mike under the GNU GPL. Mersenne Twister implementation copyrighted by Sean Luke, 		licensed under a BSD license.</string>
-	<string name="menuAboutLicBtn">View License</string>
-	<string name="menuAboutSiteBtn">View Website</string>
+	<string name="menuAboutLicBtn">License</string>
+	<string name="menuAboutSiteBtn">Website</string>
 	<string name="menuHelpPIO"><b>Pass It On</b> implements the dice used in the game <i>Never Say Die</i>, published by Philips in 1959.\n\nEach player starts with 3 chips. On a player\'s turn, they roll as many dice as they have chips (maximum 3 dice), and does the following for each die:\n\nFor an arrow pointing either left or right, the player passes a chip to the player on his left or right, respectively.\n\nFor an arrow pointing up, the player puts a chip in the center pot.\n\nFor a white dot, the player does nothing.\n\nThe player who puts the last chip into the center pot is the winner.</string>
 	<string name="menuHelpPool">This rolls many dice simultaneously, useful for games that have dice pools like <i>Arkham Horror</i> or many RPGs from White Wolf.\n\nTo use, select a number and type of dice to be rolled, then set the threshold values for successes and failures.\n\nAny result less than or equal to the value in the <b>Failure</b> field will be counted as a failure, and any result greater than or equal to the value in the <b>Success</b> field will be counted as a success.\n\nTo disable either one, enter 0 in the appropriate field.</string>
 	<string name="menuHelpStats">This is a useful tool for rolling a character\'s starting ability scores in d20-based RPGs. To use, choose the appropriate method of calculation, then press the <b>Roll</b> button.</string>

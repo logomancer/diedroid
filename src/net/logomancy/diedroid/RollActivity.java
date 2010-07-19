@@ -52,7 +52,6 @@ public class RollActivity extends Activity implements OnClickListener {
 	    case R.id.menuAbout:
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setCancelable(false)
 	    	       .setTitle(R.string.menuAboutTitle)
 	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
@@ -78,7 +77,6 @@ public class RollActivity extends Activity implements OnClickListener {
 	    case R.id.menuHelp:
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 	    	builder1.setMessage(R.string.menuHelpDice)
-	    	       .setCancelable(false)
 	    	       .setTitle(R.string.menuHelp)
 	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {

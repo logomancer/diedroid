@@ -82,7 +82,6 @@ public class DieDroidMain extends ListActivity {
 	    case R.id.menuAbout:
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setCancelable(false)
 	    	       .setTitle(R.string.menuAboutTitle)
 	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
