@@ -96,8 +96,8 @@ public class PoolActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Integer numDice = -1;
 		Integer numSides = -1;
-		Integer winValue = -1;
-		Integer failValue = -1;
+		Integer winValue = 0;
+		Integer failValue = 0;
 		Integer temp = -2;
 		Integer successes = 0;
 		Integer failures = 0;
@@ -110,10 +110,15 @@ public class PoolActivity extends Activity implements OnClickListener {
 		TextView tFail = (TextView) findViewById(R.id.poolFail);
 		
 		// get values needed to roll dice
-		numDice = Integer.valueOf(tNumDice.getText().toString());
 		numSides = misc.getSelValue();
-		winValue = Integer.valueOf(tWin.getText().toString());
-		failValue = Integer.valueOf(tFail.getText().toString());
+		try { // catch blank strings in the text boxes
+			numDice = Integer.valueOf(tNumDice.getText().toString());
+			winValue = Integer.valueOf(tWin.getText().toString());
+			failValue = Integer.valueOf(tFail.getText().toString());
+		}
+		catch (NumberFormatException e) {
+			Toast.makeText(this, R.string.errorInvalidEntry, Toast.LENGTH_SHORT).show();
+		}
 		
 		// check for error conditions
 		if(numDice < 1) { 

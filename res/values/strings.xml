@@ -24,7 +24,7 @@
 	</string-array>
 	<string name="RollButtonText">Roll</string>
 	<string name="errorNotImplemented">This has not been implemented yet.</string>
-	<string name="errorInvalidEntry">One or more parameters is invalid.</string>
+	<string name="errorInvalidEntry">One or more parameters are invalid.</string>
 	<string name="poolResultsTitleStr">Results:</string>
 
 	<string name="poolWinStr">Success:</string>

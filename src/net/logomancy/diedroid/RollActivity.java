@@ -103,10 +103,15 @@ public class RollActivity extends Activity implements OnClickListener {
 		TextView tMult = (TextView) findViewById(R.id.rollMult);
 		
 		// grab values from text boxes and spinner
-		numDice = Integer.valueOf(tNumDice.getText().toString());
 		numSides = misc.getSelValue();
-		plus = Integer.valueOf(tAdder.getText().toString());
-		mult = Integer.valueOf(tMult.getText().toString());
+		try { // catch blank strings in the text boxes
+			numDice = Integer.valueOf(tNumDice.getText().toString());
+			plus = Integer.valueOf(tAdder.getText().toString());
+			mult = Integer.valueOf(tMult.getText().toString());
+		}
+		catch (NumberFormatException e) {
+			Toast.makeText(this, R.string.errorInvalidEntry, Toast.LENGTH_SHORT).show();
+		}
 			
 		if(numDice < 1) {
 			// we can't roll less than one die
