@@ -41,7 +41,7 @@
 	<string name="statsResultTitle">Stats:</string>
 	<string name="menuAbout">About</string>
 	<string name="menuHelp">Help</string>
-	<string name="menuAboutTitle">DieDroid 1.1.0</string>
+	
 	<string name="menuAboutText">DieDroid copyright 2010 Andrew Mike under the GNU GPL. Mersenne Twister implementation copyrighted by Sean Luke, 		licensed under a BSD license.</string>
 	<string name="menuAboutLicBtn">License</string>
 	<string name="menuAboutSiteBtn">Website</string>

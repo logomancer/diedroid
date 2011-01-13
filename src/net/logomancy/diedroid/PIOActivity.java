@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,9 +44,20 @@ public class PIOActivity extends Activity implements OnClickListener{
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.menuAbout:
+	    	String version = null;
+	    	try {
+				version = getPackageManager().getPackageInfo("net.logomancy.diedroid", 0).versionName;
+			} catch (NameNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StringBuilder title = new StringBuilder();
+			title.append(getString(R.string.app_name));
+			title.append(" ");
+			title.append(version);
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setTitle(R.string.menuAboutTitle)
+	    	       .setTitle(title.toString())
 	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
