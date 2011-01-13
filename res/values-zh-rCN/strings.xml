@@ -3,7 +3,7 @@
 	<string name="app_name">DieDroid</string>
 	<string name="rollActivity">滚筒</string>
 	<string name="rollResultTitleStr">结果：</string>
-	<string name="rollResultStr"/>
+	<string name="rollResultStr" />
 	<string name="SidesSpinPrompt">选择骰子类型</string>
 	<string-array name="SidesArray">
 		<item>d2</item>
@@ -22,11 +22,10 @@
 		<item>骰子池滚筒</item>
 		<item>传递下去</item>
 	</string-array>
-	<string name="RollButtonText">投骰子</string>
+	<string name="commonRoll">投骰子</string>
 	<string name="errorNotImplemented">这还没有得到执行。</string>
 	<string name="errorInvalidEntry">一个或多个参数是无效的。</string>
 	<string name="poolResultsTitleStr">结果：</string>
-
 	<string name="poolWinStr">成功：</string>
 	<string name="poolFailStr">失败：</string>
 	<string name="errorWinFailOverlap">成功和失败的值不能相等。</string>
@@ -43,25 +42,55 @@
 	<string name="statsResultTitle">统计：</string>
 	<string name="menuAbout">关于</string>
 	<string name="menuHelp">帮助</string>
-	<string name="menuAboutTitle">DieDroid 1.1.0</string>
-	<string name="menuAboutText">DieDroid 版权所有 2010 Andrew Mike 基于 GNU GPL。Mersenne Twister算法的版权属于Sean Luke，在 BSD 协议下授权。</string>
-	<string name="menuAboutLicBtn">许可协议</string>
-	<string name="menuAboutSiteBtn">网站</string>
-	<string name="menuHelpPIO"><b>传递下去</b>实现了在飞利浦1959年发布的游戏<i>永不言弃</i>中使用骰子。\n\n每个玩家一开始都有3个筹码。轮到某个玩家的时候，他投掷数目和他拥有的chips(最多3个骰子)一样多的骰子，然后按照以下规则进行游戏：\n\n
-对于出现了指向左或右箭头的玩家，需要将一个筹码给各自左边或右边的玩家。\n\n
-对于出现了箭头指向上的玩家，需要将一个筹码放入中间的壶中。\n\n
-出现的是一个白点，则玩家什么都不做。\n\n
-赢家就是将最后一个筹码放进入中间的壶中的那个玩家。</string>
-	<string name="menuHelpPool">这个会同时投掷很多个骰子，对于<i>魔镇惊魂</i>以及很多来自白狼的RPG等等拥有骰子池的游戏来说是很有用的。\n\n
-使用这个，需要选择一个数字以及要投掷的骰子的类型，然后设置成功数和失败数的临界值。\n\n
-任何一个小于或等于<b>失败</b>字段中的值的结果会让失败数加1，而任何一个大于或等于<b>成功</b>字段中的值的结果则会让成功数加1。\n\n
-如需禁用其中任何一个的话，在适当的字段中输入0即可。</string>
-	<string name="menuHelpStats">对于为基于d20的RPG游戏中的角色投掷一个初始能力分数来说，这是一个很有用的工具。需要使用的话，先选择合适的计算方式，然后点击<b>投掷</b>按钮。</string>
-	<string name="menuHelpDice">这是一个多面体骰子的投掷器。当点击了<b>投掷</b>按钮后，将使用总和计算公式\n\n<b>AdB + C * D</b>\n\n其中<b>A</b>是投掷的骰子的数码，<b>B</b>是每个骰子的边数。\n\n<b>C</b> 会在与结果相加<i>之前</i>与<b>D</b>相乘。</string>
-	<string name="CloseBtnText">关闭</string>
-	<string name="urlLicense">http://bergwolf.googlepages.com/gplv3_zh</string>
-	<string name="urlWebsite">https://code.google.com/p/diedroid/</string>
+	<string name="menuHelpPIO">
+		<b>传递下去</b>
+		实现了在飞利浦1959年发布的游戏
+		<i>永不言弃</i>
+		中使用骰子。\n\n每个玩家一开始都有3个筹码。轮到某个玩家的时候，他投掷数目和他拥有的chips(最多3个骰子)一样多的骰子，然后按照以下规则进行游戏：\n\n
+		对于出现了指向左或右箭头的玩家，需要将一个筹码给各自左边或右边的玩家。\n\n
+		对于出现了箭头指向上的玩家，需要将一个筹码放入中间的壶中。\n\n
+		出现的是一个白点，则玩家什么都不做。\n\n
+		赢家就是将最后一个筹码放进入中间的壶中的那个玩家。
+	</string>
+	<string name="menuHelpPool">
+		这个会同时投掷很多个骰子，对于
+		<i>魔镇惊魂</i>
+		以及很多来自白狼的RPG等等拥有骰子池的游戏来说是很有用的。\n\n
+		使用这个，需要选择一个数字以及要投掷的骰子的类型，然后设置成功数和失败数的临界值。\n\n
+		任何一个小于或等于
+		<b>失败</b>
+		字段中的值的结果会让失败数加1，而任何一个大于或等于
+		<b>成功</b>
+		字段中的值的结果则会让成功数加1。\n\n
+		如需禁用其中任何一个的话，在适当的字段中输入0即可。
+	</string>
+	<string name="menuHelpStats">
+		对于为基于d20的RPG游戏中的角色投掷一个初始能力分数来说，这是一个很有用的工具。需要使用的话，先选择合适的计算方式，然后点击
+		<b>投掷</b>
+		按钮。
+	</string>
+	<string name="menuHelpDice">
+		这是一个多面体骰子的投掷器。当点击了
+		<b>投掷</b>
+		按钮后，将使用总和计算公式\n\n
+		<b>AdB + C * D</b>
+		\n\n其中
+		<b>A</b>
+		是投掷的骰子的数码，
+		<b>B</b>
+		是每个骰子的边数。\n\n
+		<b>C</b>
+		会在与结果相加
+		<i>之前</i>
+		与
+		<b>D</b>
+		相乘。
+	</string>
+	<string name="commonClose">关闭</string>
 	<string name="pioDiceCaptionStr">骰子：</string>
 	<string name="pioErrNoDice">请选择一个、两个或是三个骰子</string>
-<string name="helpMainText">从菜单中选择一个任务。</string>
+	<string name="mainHelpTxt">从菜单中选择一个任务。</string>
+	<string name="commonTwo">二</string>
+	<string name="commonOne">一</string>
+	<string name="commonThree">三</string>
 </resources>

@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content" android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
+	<Spinner android:layout_height="wrap_content" android:id="@+id/statsMethodSpin"
+		android:focusable="true" android:layout_gravity="center_horizontal"
+		android:entries="@array/statsRollMethods" android:layout_marginBottom="10dp"
+		android:layout_marginTop="20dp" android:layout_width="fill_parent" />
+	<TextView android:text="@string/statsDropCapTxt"
+		android:layout_height="wrap_content" android:layout_width="wrap_content"
+		android:id="@+id/statsDropCap" android:textSize="18dp"
+		android:layout_below="@id/statsMethodSpin" />
+	<SeekBar android:focusableInTouchMode="true"
+		android:layout_height="wrap_content" android:id="@+id/statsDropBar"
+		android:progress="0" android:clickable="true" android:max="15"
+		android:layout_width="wrap_content" android:focusable="true"
+		android:layout_marginRight="4dp"
+		android:layout_below="@+id/statsDropCap" android:layout_alignLeft="@+id/statsDropCap" android:layout_marginTop="4dp" android:minWidth="264dp"/>
+	<Button android:layout_height="wrap_content" android:textSize="32dp"
+		android:fitsSystemWindows="true" android:id="@+id/statsRollButton"
+		android:layout_marginTop="10dp" android:layout_width="fill_parent" android:layout_marginBottom="5dp"
+		android:layout_below="@+id/statsDropBar" android:layout_alignLeft="@+id/statsDropBar" android:text="@string/commonRoll"/>
+	<View android:background="#ababab" android:layout_height="5dp"
+		android:id="@+id/statsHLine" android:layout_width="wrap_content"
+		android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
+		android:layout_below="@id/statsRollButton" android:layout_alignRight="@id/statsRollButton"
+		android:layout_alignLeft="@+id/statsRollButton" />
+	<TextView android:layout_height="wrap_content" android:id="@+id/statsResultsTitle"
+		android:layout_marginTop="5dp" android:textSize="35dp"
+		android:text="@string/statsResultTitle" android:layout_width="fill_parent"
+		android:layout_marginBottom="10dp" android:layout_below="@+id/statsHLine"
+		android:layout_alignLeft="@+id/statsHLine" android:layout_alignRight="@+id/statsHLine" />
+	<GridView android:gravity="center" android:layout_height="wrap_content"
+		android:isScrollContainer="true" android:focusable="false"
+		android:fitsSystemWindows="true" android:smoothScrollbar="true"
+		android:focusableInTouchMode="false" android:verticalSpacing="5sp"
+		android:id="@+id/statsResultsGrid" android:numColumns="3"
+		android:layout_width="wrap_content" android:layout_below="@+id/statsResultsTitle"
+		android:layout_alignLeft="@+id/statsResultsTitle"
+		android:layout_alignRight="@+id/statsResultsTitle" />
+	
 
 
 
 
-<Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/statsMethodSpin" android:focusable="true" android:layout_gravity="center_horizontal" android:entries="@array/statsRollMethods" android:nextFocusDown="@+id/statsRollButton" android:nextFocusRight="@id/statsRollButton" android:layout_marginBottom="10dp" android:layout_marginTop="20dp"></Spinner><Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:fitsSystemWindows="true" android:text="@string/RollButtonText" android:id="@id/statsRollButton" android:nextFocusLeft="@id/statsMethodSpin" android:nextFocusUp="@id/statsMethodSpin" android:textSize="35dp" android:layout_marginTop="10dp" android:layout_marginBottom="5dp"></Button><View android:layout_width="wrap_content" android:id="@+id/statsHLine" android:background="#ababab" android:layout_height="5dp" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"></View><TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/statsResultsTitle" android:text="@string/statsResultTitle" android:textSize="35dp" android:layout_marginBottom="10dp" android:layout_marginTop="5dp"></TextView><GridView android:layout_width="wrap_content" android:layout_height="wrap_content" android:focusable="false" android:focusableInTouchMode="false" android:isScrollContainer="true" android:smoothScrollbar="true" android:verticalSpacing="5sp" android:gravity="center" android:fitsSystemWindows="true" android:id="@+id/statsResultsGrid" android:numColumns="3"></GridView>
 
-
-
-</LinearLayout>
+<TextView android:layout_height="wrap_content" android:id="@+id/statsDropVal" android:text="3" android:textStyle="bold" android:layout_width="wrap_content" android:layout_alignParentRight="true" android:layout_marginRight="4dp" android:layout_alignTop="@id/statsDropCap" android:textSize="36dp" android:layout_marginTop="16dp"></TextView>
+</RelativeLayout>

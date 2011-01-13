@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class PIOActivity extends Activity implements OnClickListener{
@@ -24,8 +23,12 @@ public class PIOActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.passiton); // set our layout
         
-        Button roll = (Button) findViewById(R.id.pioRollBtn);
-        roll.setOnClickListener(this);
+        Button rollOne = (Button) findViewById(R.id.pioOneDieBtn);
+        rollOne.setOnClickListener(this);
+        Button rollTwo = (Button) findViewById(R.id.pioTwoDiceBtn);
+        rollTwo.setOnClickListener(this);
+        Button rollThree = (Button) findViewById(R.id.pioThreeDiceBtn);
+        rollThree.setOnClickListener(this);
 	}
 	
 	@Override
@@ -56,7 +59,7 @@ public class PIOActivity extends Activity implements OnClickListener{
 	    	               startActivity(new Intent("android.intent.action.VIEW", url));
 	    	           }
 	    	       })
-	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -68,7 +71,7 @@ public class PIOActivity extends Activity implements OnClickListener{
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 	    	builder1.setMessage(R.string.menuHelpPIO)
 	    	       .setTitle(R.string.menuHelp)
-	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -81,8 +84,7 @@ public class PIOActivity extends Activity implements OnClickListener{
 	}
 
 	public void onClick(View v) {
-		RadioGroup diceBtns = (RadioGroup) findViewById(R.id.pioDiceGroup);
-		int howMany = diceBtns.getCheckedRadioButtonId();
+		int howMany = v.getId();
 		if (howMany != -1) {
 			MersenneTwisterFast Random = new MersenneTwisterFast();
 			Integer[] diceArray = new Integer[3];
@@ -91,12 +93,12 @@ public class PIOActivity extends Activity implements OnClickListener{
 			resArray[1] = R.id.pioDieTwo;
 			resArray[2] = R.id.pioDieThree;
 			switch(howMany) {
-			case R.id.pio1Dice: // roll one die
+			case R.id.pioOneDieBtn: // roll one die
 				diceArray[0] = 0;
 				diceArray[1] = Random.nextInt(6) + 1;
 				diceArray[2] = 0;
 				break;
-			case R.id.pio2Dice: // roll two dice
+			case R.id.pioTwoDiceBtn: // roll two dice
 				diceArray[0] = Random.nextInt(6) + 1;
 				diceArray[1] = 0;
 				diceArray[2] = Random.nextInt(6) + 1;

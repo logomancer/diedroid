@@ -32,13 +32,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
 import java.util.Arrays;
 
-public class StatsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
+public class StatsActivity extends Activity implements OnItemSelectedListener, OnClickListener, OnSeekBarChangeListener {
 
 	private Integer rollType = -1;
+	private Integer dropThreshold = 3;
 	MersenneTwisterFast Random = new MersenneTwisterFast();
 	
 	/** Called when the activity is first created. */
@@ -54,6 +59,9 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
         // ditto with the button
         Button rollBtn = (Button) findViewById(R.id.statsRollButton);
         rollBtn.setOnClickListener(this);
+        
+        SeekBar dropBar = (SeekBar) findViewById(R.id.statsDropBar);
+        dropBar.setOnSeekBarChangeListener(this);
     }
     
     @Override
@@ -84,7 +92,7 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 	    	               startActivity(new Intent("android.intent.action.VIEW", url));
 	    	           }
 	    	       })
-	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -96,7 +104,7 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 	    	builder1.setMessage(R.string.menuHelpStats)
 	    	       .setTitle(R.string.menuHelp)
-	    	       .setNegativeButton(R.string.CloseBtnText, new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -121,6 +129,14 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 		
 	}
 	
+	public void onProgressChanged(SeekBar src, int progress, boolean FromUser) {
+		dropThreshold = progress + 3;
+		StringBuilder thresh = new StringBuilder();
+		thresh.append(dropThreshold);
+		TextView dropValue = (TextView) findViewById(R.id.statsDropVal);
+		dropValue.setText(thresh);		
+	}
+	
 	// click listener for the roll button
 	public void onClick(View v) {
 		Integer numStats = 6; // we're rolling 6 stats
@@ -132,30 +148,40 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 		// now we roll stats based on what method we want
 		switch(rollType) {
 		case 1: // Straight 3d6
-			for(i = 0; i < numStats; i++) {
+			for(i = 0; i < numStats;) {
 				temp = 0;
 				temp += Random.nextInt(6) + 1;
 				temp += Random.nextInt(6) + 1;
 				temp += Random.nextInt(6) + 1;
-				stats[i] = temp;
+				if(temp >= dropThreshold) {
+					stats[i] = temp;
+					i++;
+				}
 			}
 			break;
 		case 0: // 4d6, drop the lowest
 			dice = new Integer[4];
-			for(i = 0; i < numStats; i++) {
+			for(i = 0; i < numStats;) {
 				dice[0] = Random.nextInt(6) + 1;
 				dice[1] = Random.nextInt(6) + 1;
 				dice[2] = Random.nextInt(6) + 1;
 				dice[3] = Random.nextInt(6) + 1;
 				Arrays.sort(dice);
 				// since the array is now sorted in ascending numerical order, dice[0] is the lowest
-				stats[i] = dice[1] + dice[2] + dice[3];
+				temp = dice[1] + dice[2] + dice[3];
+				if(temp >= dropThreshold) {
+					stats[i] = temp;
+					i++;
+				}
 			}
 			break;
 		case 2: // d6 + 14
-			for(i = 0; i < numStats; i++) {
-				stats[i] = Random.nextInt(6) + 15; // we add the extra 1 because Random will give us 0-5
-				
+			for(i = 0; i < numStats;) {
+				temp = Random.nextInt(6) + 15; // we add the extra 1 because Random will give us 0-5
+				if(temp >= dropThreshold) {
+					stats[i] = temp;
+					i++;
+				}				
 			}
 			break;
 		}
@@ -163,6 +189,16 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 		// capture the GridView and attach an adapter with our stats in it
 		GridView statsGrid = (GridView) findViewById(R.id.statsResultsGrid);
 		statsGrid.setAdapter(new ArrayAdapter<Integer>(this, R.layout.diegridsquare, stats));
+	}
+
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// do nothing
+		
+	}
+
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// do nothing
+		
 	}
 
 }
