@@ -19,9 +19,9 @@ package net.logomancy.diedroid;
 import android.net.Uri;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,11 +33,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import net.logomancy.diedroid.DiceSpinListener;
-import ec.util.MersenneTwisterFast;
 
 public class RollActivity extends Activity implements OnClickListener {
 	DiceSpinListener misc = new DiceSpinListener(); // need this to implement the dice spinner listener
-	MersenneTwisterFast Random = new MersenneTwisterFast();
+	DieGroup Die = new DieGroup();
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,40 +50,34 @@ public class RollActivity extends Activity implements OnClickListener {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.menuAbout:
-	    	String version = null;
+	    	Intent about = new Intent("org.openintents.action.SHOW_ABOUT_DIALOG");
 	    	try {
-				version = getPackageManager().getPackageInfo("net.logomancy.diedroid", 0).versionName;
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			StringBuilder title = new StringBuilder();
-			title.append(getString(R.string.app_name));
-			title.append(" ");
-			title.append(version);
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setTitle(title.toString())
-	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
-	    	                startActivity(new Intent("android.intent.action.VIEW", url));
-	    	                
-	    	           }
-	    	       })
-	    	       .setNeutralButton(R.string.menuAboutLicBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   Uri url = Uri.parse(getString(R.string.urlLicense));
-	    	               startActivity(new Intent("android.intent.action.VIEW", url));
-	    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	AlertDialog about = builder.create();
-	    	about.show();
+	    		startActivityForResult(about, 0);
+	    	}
+	    	catch(ActivityNotFoundException e) {
+	    		AlertDialog.Builder notFoundBuilder = new AlertDialog.Builder(this);
+	    		notFoundBuilder.setMessage(R.string.aboutNotFoundText)
+	    				.setTitle(R.string.aboutNotFoundTitle)
+	    				.setPositiveButton(R.string.commonYes, new DialogInterface.OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int id) {
+	    						try{
+	    							Intent getApp = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutMarket)));
+	    							startActivity(getApp);
+	    						}
+	    						catch(ActivityNotFoundException e) {
+	    							Intent getAppAlt = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutWeb)));
+	    							startActivity(getAppAlt);
+	    						}
+	    					}
+	    				})
+	    				.setNegativeButton(R.string.commonNo, new DialogInterface.OnClickListener() {
+	 	    	           public void onClick(DialogInterface dialog, int id) {
+	 	    	                dialog.cancel();
+	 	    	           }
+	 	    	       });
+	    		AlertDialog notFound = notFoundBuilder.create();
+	    		notFound.show();
+	    	}
 	    	return true;
 	    case R.id.menuHelp:
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -103,11 +96,6 @@ public class RollActivity extends Activity implements OnClickListener {
 	}
 	
 	public void onClick(View v) {
-		int numDice = -1;
-		int numSides = -1;
-		int plus = 0;
-		int mult = 1;
-		int temp = -2;
 		
 		// capture text boxes
 		TextView tNumDice = (TextView) findViewById(R.id.rollNumDice);
@@ -115,33 +103,22 @@ public class RollActivity extends Activity implements OnClickListener {
 		TextView tMult = (TextView) findViewById(R.id.rollMult);
 		
 		// grab values from text boxes and spinner
-		numSides = misc.getSelValue();
+		Die.Sides = misc.getSelValue();
 		try { // catch blank strings in the text boxes
-			numDice = Integer.valueOf(tNumDice.getText().toString());
-			plus = Integer.valueOf(tAdder.getText().toString());
-			mult = Integer.valueOf(tMult.getText().toString());
+			Die.Quantity = Integer.valueOf(tNumDice.getText().toString());
+			Die.Adder = Integer.valueOf(tAdder.getText().toString());
+			Die.Multiplier = Integer.valueOf(tMult.getText().toString());
 		}
 		catch (NumberFormatException e) {
 			Toast.makeText(this, R.string.errorInvalidEntry, Toast.LENGTH_SHORT).show();
 		}
 			
-		if(numDice < 1) {
+		if(Die.Quantity < 1) {
 			// we can't roll less than one die
 			Toast.makeText(this, R.string.errorNotEnoughDice, Toast.LENGTH_SHORT).show();
 		}
 		else {
-			int Idx;
-			int diceTotal = 0;
-			
-			// roll dice
-			for (Idx = 0; Idx < numDice; Idx++) {
-				temp = Random.nextInt(numSides) + 1;
-				diceTotal += temp;
-			}
-			
-			// add and multiply specified values 
-			diceTotal += plus;
-			diceTotal *= mult;
+			int diceTotal = Die.roll();
 			
 			// capture TextView for result and output total
 			TextView grandTotal = (TextView) findViewById(R.id.rollResult);

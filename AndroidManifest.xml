@@ -14,8 +14,15 @@
     <activity android:screenOrientation="portrait" android:name="RollActivity"></activity>
 <activity android:screenOrientation="portrait" android:name="PoolActivity"></activity>
 <activity android:screenOrientation="portrait" android:name="StatsActivity"></activity>
-<activity android:name="PIOActivity"></activity>
+<activity android:screenOrientation="portrait" android:name="PIOActivity"></activity>
+<meta-data android:value="@string/aboutEmail" android:name="org.openintents.metadata.EMAIL"></meta-data>
+<meta-data android:name="org.openintents.metadata.WEBSITE_URL" android:value="@string/urlWebsite"></meta-data>
+<meta-data android:value="@string/aboutSiteLabel" android:name="org.openintents.metadata.WEBSITE_LABEL"></meta-data>
+<meta-data android:value="@string/aboutCopyright" android:name="org.openintents.metadata.COPYRIGHT"></meta-data>
+<meta-data android:name="org.openintents.metadata.TRANSLATORS" android:resource="@array/aboutTranslators"></meta-data>
+<meta-data android:name="org.openintents.metadata.AUTHORS" android:resource="@array/aboutAuthors"></meta-data>
+<meta-data android:name="org.openintents.metadata.LICENSE" android:resource="@raw/diedroid_license"></meta-data>
 
 </application>
-    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="9"/>
+    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="10"/>
 </manifest> 

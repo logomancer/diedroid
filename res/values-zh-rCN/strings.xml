@@ -4,18 +4,7 @@
 	<string name="rollActivity">滚筒</string>
 	<string name="rollResultTitleStr">结果：</string>
 	<string name="rollResultStr" />
-	<string name="SidesSpinPrompt">选择骰子类型</string>
-	<string-array name="SidesArray">
-		<item>d2</item>
-		<item>d3</item>
-		<item>d4</item>
-		<item>d6</item>
-		<item>d8</item>
-		<item>d10</item>
-		<item>d12</item>
-		<item>d20</item>
-		<item>d100</item>
-	</string-array>
+	<string name="sidesSpinPrompt">选择骰子类型</string>
 	<string-array name="activityListChoices">
 		<item>骰子滚筒</item>
 		<item>能力分数滚筒</item>
@@ -32,8 +21,8 @@
 	<string name="errorWinFailNegative">成功和失败的值不能为负。</string>
 	<string name="errorNotEnoughDice">你至少要投一个骰子。</string>
 	<string name="errorWinFailOverflow">成功和失败的值不能超出边的数目。</string>
-	<string name="poolSuccesses">成功数：</string>
-	<string name="poolFailures">失败数：</string>
+	<string name="poolSuccesses">成功数</string>
+	<string name="poolFailures">失败数</string>
 	<string-array name="statsRollMethods">
 		<item>4个d6，去掉最小的一个</item>
 		<item>直接投3个d6</item>
@@ -90,7 +79,7 @@
 	<string name="pioDiceCaptionStr">骰子：</string>
 	<string name="pioErrNoDice">请选择一个、两个或是三个骰子</string>
 	<string name="mainHelpTxt">从菜单中选择一个任务。</string>
-	<string name="commonTwo">二</string>
-	<string name="commonOne">一</string>
-	<string name="commonThree">三</string>
+	<string-array name="aboutTranslators">
+		<item>Damian Cui</item>
+	</string-array>
 </resources>

@@ -4,18 +4,7 @@
 	<string name="rollActivity">Tirador</string>
 	<string name="rollResultTitleStr">Resulta:</string>
 	<string name="rollResultStr" />
-	<string name="SidesSpinPrompt">Escoja el Número de Caras</string>
-	<string-array name="SidesArray">
-		<item>d2</item>
-		<item>d3</item>
-		<item>d4</item>
-		<item>d6</item>
-		<item>d8</item>
-		<item>d10</item>
-		<item>d12</item>
-		<item>d20</item>
-		<item>d100</item>
-	</string-array>
+	<string name="sidesSpinPrompt">Escoja el Número de Caras</string>
 	<string-array name="activityListChoices">
 		<item>Tirador de Dados</item>
 		<item>Tirador de Puntuación de Habilidades</item>
@@ -26,15 +15,12 @@
 	<string name="errorNotImplemented">Esto no se ha implementado todavía.</string>
 	<string name="errorInvalidEntry">Uno o más parámetros no son válidos.</string>
 	<string name="poolResultsTitleStr">Resultas:</string>
-
-	<string name="poolWinStr">Éxito:</string>
-	<string name="poolFailStr">Falla:</string>
 	<string name="errorWinFailOverlap">Los valores del Éxito y de la Falla no se pueden solapar.</string>
 	<string name="errorWinFailNegative">El Éxito y la Falla no se pueden tener valores negativos.</string>
 	<string name="errorNotEnoughDice">Debe tirar un dado por lo menos.</string>
 	<string name="errorWinFailOverflow">Los valores del Éxito y de la Falla no se pueden exceder el número de caras.</string>
-	<string name="poolSuccesses">Éxitos: </string>
-	<string name="poolFailures">Fallas: </string>
+	<string name="poolSuccesses">Éxitos</string>
+	<string name="poolFailures">Fallas</string>
 	<string-array name="statsRollMethods">
 		<item>4d6, eliminar el más bajo</item>
 		<item>Directamente 3d6</item>
@@ -43,18 +29,17 @@
 	<string name="statsResultTitle">Estadísticas:</string>
 	<string name="menuAbout">Sobre</string>
 	<string name="menuHelp">Ayuda</string>
-	<string name="menuAboutTitle">DieDroid 1.1.0</string>
-	<string name="menuAboutText">DieDroid copyright 2010 Andrew Mike con una licencia de GNU GPL. La aplicación de Mersenne Twister escrito por Sean Luke con una licencia de BSD.</string>
-	<string name="menuAboutLicBtn">Licencia</string>
-	<string name="menuAboutSiteBtn">Sitio Web</string>
 	<string name="menuHelpDice">Esto es un tirador de los dados poliédricos. Cuando se pulsa el boton <b>Tirar</b>, el total se calculado utilizando la fórmula\n\n<b>AdB + C * D</b>\n\ndonde <b>A</b> es el número de dados tiradas y <b>B</b> es el número de lados por cada dado. <b>C</b> se añadirán al total <i>antes del</i> total es multiplicado por <b>D</b>.</string>
 	<string name="menuHelpStats">Ésta es una herramienta útil para tirar puntuaciones de habilidades de partida para caracteres en juegos de rol de d20. Para utilizar, seleccione la sistema de calculación apropriado y marque el boton <b>Tirar</b>.\n\nOpcionalmente, puede establecer un valor mínimo con el control deslizante; cualquier tiro bajo que el valor establecido será descartado.</string>
 	<string name="menuHelpPool">Esto tira muchos dados a la mismo tiempo, útil para juegos que tienen reservas de dados como <i>Arkham Horror</i> o juegos de rol de White Wolf.\n\nPara utilizar, seleccione el número y tipo de dados para tirar, y entonces seleccione los valores umbral para los éxitos y las fallas. Cada resulta menor o igual al valor en el campo <b>Falla</b> se contabilizarán como una falla, y cada resulta mayor o igual al valor en el campo <b>Éxito</b> se contabilizarán como un éxito.\n\nPara deshabilitar cualquiera de los dos, entrada 0 en el campo apropriado.</string>
 	<string name="menuHelpPIO"><b>Pass It On</b> implementa los dados del juego <i>Never Say Die</i>, publicado por Philips en 1959. Cada jugador empieza el juego con 3 fichas. En el turno, el jugador tira como los dados hasta que tiene fichas (máximo 3 dados) y hace lo siguiente para cada dado:\n\nPara una flecha apuntando a la izquierda o derecha, el jugador da una ficha al jugador a la izquierda o derecha, respectivamente.\n\nPara una flecha apuntando a la arriba, el jugador da una ficha al centro.\n\nPara una punta blanca, el jugador no hace nada.\n\nEl ganador es el jugador quien da la última ficha al centro.</string>
 	<string name="commonClose">Cerrar</string>
-	<string name="urlLicense">http://www.viti.es/gnu/licenses/gpl.html</string>
 	<string name="pioDiceCaptionStr">Dados:</string>
 	<string name="pioErrNoDice">Por favor seleccione una, dos o tres dados.</string>
 	<string name="mainHelpTxt">Seleccione una tarea en el menú.</string>
 	<string name="statsDropCapTxt">Descarta todos los valores bajo:</string>
+	<string-array name="aboutTranslators">
+		<item>Andrew Mike\nlogomancer@gmail.com</item>
+	</string-array>
+	<string name="aboutSiteLabel">DieDroid al sitio Google Code</string>
 </resources>

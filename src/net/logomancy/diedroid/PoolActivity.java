@@ -19,16 +19,21 @@ package net.logomancy.diedroid;
 import ec.util.MersenneTwisterFast;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,10 +41,19 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import net.logomancy.diedroid.DiceSpinListener;
+import net.logomancy.diedroid.PoolDialog;
 
 public class PoolActivity extends Activity implements OnClickListener {
 	DiceSpinListener misc = new DiceSpinListener(); // needed for implementation of dice spinner listener
 	MersenneTwisterFast Random = new MersenneTwisterFast();
+	Integer winValue = 0;
+	Integer failValue = 0;
+	Button winButton;
+	Button failButton;
+	
+	static class ViewHandler {
+		TextView text;
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,40 +67,34 @@ public class PoolActivity extends Activity implements OnClickListener {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.menuAbout:
-	    	String version = null;
+	    	Intent about = new Intent("org.openintents.action.SHOW_ABOUT_DIALOG");
 	    	try {
-				version = getPackageManager().getPackageInfo("net.logomancy.diedroid", 0).versionName;
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			StringBuilder title = new StringBuilder();
-			title.append(getString(R.string.app_name));
-			title.append(" ");
-			title.append(version);
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setTitle(title.toString())
-	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
-	    	                startActivity(new Intent("android.intent.action.VIEW", url));
-	    	                
-	    	           }
-	    	       })
-	    	       .setNeutralButton(R.string.menuAboutLicBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   Uri url = Uri.parse(getString(R.string.urlLicense));
-	    	               startActivity(new Intent("android.intent.action.VIEW", url));
-	    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	AlertDialog about = builder.create();
-	    	about.show();
+	    		startActivityForResult(about, 0);
+	    	}
+	    	catch(ActivityNotFoundException e) {
+	    		AlertDialog.Builder notFoundBuilder = new AlertDialog.Builder(this);
+	    		notFoundBuilder.setMessage(R.string.aboutNotFoundText)
+	    				.setTitle(R.string.aboutNotFoundTitle)
+	    				.setPositiveButton(R.string.commonYes, new DialogInterface.OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int id) {
+	    						try{
+	    							Intent getApp = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutMarket)));
+	    							startActivity(getApp);
+	    						}
+	    						catch(ActivityNotFoundException e) {
+	    							Intent getAppAlt = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutWeb)));
+	    							startActivity(getAppAlt);
+	    						}
+	    					}
+	    				})
+	    				.setNegativeButton(R.string.commonNo, new DialogInterface.OnClickListener() {
+	 	    	           public void onClick(DialogInterface dialog, int id) {
+	 	    	                dialog.cancel();
+	 	    	           }
+	 	    	       });
+	    		AlertDialog notFound = notFoundBuilder.create();
+	    		notFound.show();
+	    	}
 	    	return true;
 	    case R.id.menuHelp:
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -104,29 +112,133 @@ public class PoolActivity extends Activity implements OnClickListener {
 	    }
 	}
 	
-	// click listener for roll button
+	class ColorAdapter extends ArrayAdapter<Integer> {
+		Integer win;
+		Integer fail;
+		
+		ColorAdapter(Context con, int tvResID, Integer[] array, Integer success, Integer failure) {
+			super(con, tvResID, array);
+			win = success;
+			fail = failure;
+		}
+		
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHandler hand;
+			Integer val = getItem(position);
+			LayoutInflater inflater = getLayoutInflater();
+			
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.diegridsquare, parent, false);
+				
+				hand = new ViewHandler();
+				hand.text = (TextView) convertView.findViewById(R.id.poolDieGridSquare);
+				
+				convertView.setTag(hand);
+			}
+			else {
+				hand = (ViewHandler) convertView.getTag();
+			}
+			
+			hand.text.setText(val.toString());
+						
+			if (win > 0 && val >= win) {
+				hand.text.setTextColor(Color.GREEN);
+			}
+			else if (fail > 0 && val <= fail) {
+				hand.text.setTextColor(Color.RED);
+			}
+			else if (fail > 0 || win > 0) {
+				hand.text.setTextColor(Color.DKGRAY);
+			}
+			
+			return convertView;
+		}
+	}
+	
+	protected Dialog onCreateDialog(int id) {
+	    Dialog popUp;
+	    switch(id) {
+	    case PoolDialog.POOL_DIALOG_WIN:
+	        popUp = new PoolDialog(this, id, new PoolDialog.ReturnListener() {
+				public void onReturn(int returned) {
+					String buttonText;
+					winValue = returned;
+					if(winValue > 0) {
+						StringBuilder sBuild = new StringBuilder();
+						sBuild.append(winValue);
+						sBuild.append(" ");
+						sBuild.append(getText(R.string.poolOrMore));
+						buttonText = sBuild.toString();
+					}
+					else {
+						buttonText = new String("Disabled");
+					}
+					winButton.setText(buttonText);
+				}
+	        });
+	        break;
+	    case PoolDialog.POOL_DIALOG_FAIL:
+	    	popUp = new PoolDialog(this, id, new PoolDialog.ReturnListener() {
+	    		public void onReturn(int returned) {
+					String buttonText;
+					failValue = returned;
+					if(failValue > 0) {
+						StringBuilder sBuild = new StringBuilder();
+						sBuild.append(failValue);
+						sBuild.append(" ");
+						sBuild.append(getText(R.string.poolOrLess));
+						buttonText = sBuild.toString();
+					}
+					else {
+						buttonText = new String("Disabled");
+					}
+					failButton.setText(buttonText);
+				}
+	        });
+	        break;
+	    default:
+	        popUp = null;
+	    }
+	    return popUp;
+	}
+	
+	protected void onPrepareDialog(int id, Dialog dialog) {
+		PoolDialog pd = (PoolDialog) dialog;
+		pd.setLimit(misc.getSelValue());
+	}
+	
 	public void onClick(View v) {
+		switch (v.getId()){
+		case (R.id.poolRollButton):
+			roll();
+		break;
+		case (R.id.poolWinButton):
+			showDialog(PoolDialog.POOL_DIALOG_WIN);
+		break;
+		case (R.id.poolFailButton):
+			showDialog(PoolDialog.POOL_DIALOG_FAIL);
+		break;
+		}
+	}
+	
+	// click listener for roll button
+	public void roll() {
 		Integer numDice = -1;
 		Integer numSides = -1;
-		Integer winValue = 0;
-		Integer failValue = 0;
 		Integer temp = -2;
 		Integer successes = 0;
 		Integer failures = 0;
 		Integer[] diceArray;
-		StringBuilder winFailPopup = new StringBuilder();
 		
 		// capture text boxes
 		TextView tNumDice = (TextView) findViewById(R.id.poolDiceNum);
-		TextView tWin = (TextView) findViewById(R.id.poolWin);
-		TextView tFail = (TextView) findViewById(R.id.poolFail);
+		TextView numWinsText = (TextView) findViewById(R.id.poolWin);
+		TextView numFailsText = (TextView) findViewById(R.id.poolFail);
 		
 		// get values needed to roll dice
 		numSides = misc.getSelValue();
 		try { // catch blank strings in the text boxes
 			numDice = Integer.valueOf(tNumDice.getText().toString());
-			winValue = Integer.valueOf(tWin.getText().toString());
-			failValue = Integer.valueOf(tFail.getText().toString());
 		}
 		catch (NumberFormatException e) {
 			Toast.makeText(this, R.string.errorInvalidEntry, Toast.LENGTH_SHORT).show();
@@ -162,23 +274,11 @@ public class PoolActivity extends Activity implements OnClickListener {
 			
 			// capture the GridView for the dice and attach an adapter based on the array of dice we just rolled
 			GridView diceGrid = (GridView) findViewById(R.id.poolResultsGrid);
-			diceGrid.setAdapter(new ArrayAdapter<Integer>(this, R.layout.diegridsquare, diceArray));
+			diceGrid.setAdapter(new ColorAdapter(this, R.id.poolDieGridSquare, diceArray, winValue, failValue));
 			
 			// pop up a Toast stating the number of failures and successes
-			if(successes > 0) {
-				winFailPopup.append(getString(R.string.poolSuccesses));
-				winFailPopup.append(" ");
-				winFailPopup.append(successes);
-			}
-			if (failures > 0) {
-				if(winFailPopup.length() > 0) {winFailPopup.append("  ");}
-				winFailPopup.append(getString(R.string.poolFailures));
-				winFailPopup.append(" ");
-				winFailPopup.append(failures);
-			}
-			if(winFailPopup.length() > 0) {
-				Toast.makeText(this, winFailPopup.toString(), Toast.LENGTH_SHORT).show();
-			}
+			numWinsText.setText(Integer.toString(successes));
+			numFailsText.setText(Integer.toString(failures));
 		}
 		
 	}
@@ -195,6 +295,12 @@ public class PoolActivity extends Activity implements OnClickListener {
         // ditto with the button
         Button roll = (Button) findViewById(R.id.poolRollButton);
         roll.setOnClickListener(this);
+        
+        winButton = (Button) findViewById(R.id.poolWinButton);
+        winButton.setOnClickListener(this);
+        
+        failButton = (Button) findViewById(R.id.poolFailButton);
+        failButton.setOnClickListener(this);
     }
 
 }

@@ -25,14 +25,12 @@
 	<string name="errorNotImplemented">This has not been implemented yet.</string>
 	<string name="errorInvalidEntry">One or more parameters are invalid.</string>
 	<string name="poolResultsTitleStr">Results:</string>
-	<string name="poolWinStr">Success:</string>
-	<string name="poolFailStr">Failure:</string>
 	<string name="errorWinFailOverlap">Success and Failure values cannot overlap.</string>
 	<string name="errorWinFailNegative">Success and Failure values cannot be negative.</string>
 	<string name="errorNotEnoughDice">You must roll at least one die.</string>
 	<string name="errorWinFailOverflow">Success and Failure values cannot exceed the number of sides.</string>
-	<string name="poolSuccesses">Successes: </string>
-	<string name="poolFailures">Failures: </string>
+	<string name="poolSuccesses">Successes</string>
+	<string name="poolFailures">Failures</string>
 	<string-array name="statsRollMethods">
 		<item>4d6, drop the lowest</item>
 		<item>Straight 3d6</item>
@@ -41,7 +39,6 @@
 	<string name="statsResultTitle">Stats:</string>
 	<string name="menuAbout">About</string>
 	<string name="menuHelp">Help</string>
-	
 	<string name="menuAboutText">DieDroid copyright 2010 Andrew Mike under the GNU GPL. Mersenne Twister implementation copyrighted by Sean Luke, 		licensed under a BSD license.</string>
 	<string name="menuAboutLicBtn">License</string>
 	<string name="menuAboutSiteBtn">Website</string>
@@ -59,4 +56,22 @@
 	<string name="commonOne">1</string>
 	<string name="commonTwo">2</string>
 	<string name="commonThree">3</string>
+	<string name="aboutEmail">logomancer@gmail.com</string>
+	<string name="aboutSiteLabel">DieDroid at Google Code</string>
+	<string name="aboutCopyright">Copyright © 2010-2011 Andrew Mike</string>
+	<string name="aboutNotFoundTitle">OI About Not Found</string>
+	<string name="aboutNotFoundText">We were unable to find OI About, which is required for the about dialog. Would you like to download it now?</string>
+	<string name="commonYes">Yes</string>
+	<string name="commonNo">No</string>
+	<string name="urlAboutMarket">market://details?id=org.openintents.about</string>
+	<string name="urlAboutWeb">http://www.openintents.org/en/node/202</string>
+	<string-array name="aboutAuthors">
+		<item>Andrew Mike\nlogomancer@gmail.com</item>
+	</string-array>
+	<string name="poolWinDialogCaption">Roll is a success if equal or greater than:</string>
+	<string name="poolFailDialogCaption">Roll is a failure if equal or less than:</string>
+	<string name="poolDialogTitle">Select Value</string>
+	<string name="commonDisabled">Disabled</string>
+	<string name="poolOrMore">or more</string>
+	<string name="poolOrLess">or less</string>
 </resources>

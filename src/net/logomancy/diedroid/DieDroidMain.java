@@ -27,9 +27,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 
 public class DieDroidMain extends ListActivity {
     
@@ -81,40 +81,34 @@ public class DieDroidMain extends ListActivity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.menuAbout:
-	    	String version = null;
+	    	Intent about = new Intent("org.openintents.action.SHOW_ABOUT_DIALOG");
 	    	try {
-				version = getPackageManager().getPackageInfo("net.logomancy.diedroid", 0).versionName;
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			StringBuilder title = new StringBuilder();
-			title.append(getString(R.string.app_name));
-			title.append(" ");
-			title.append(version);
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setTitle(title.toString())
-	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
-	    	                startActivity(new Intent("android.intent.action.VIEW", url));
-	    	                
-	    	           }
-	    	       })
-	    	       .setNeutralButton(R.string.menuAboutLicBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   Uri url = Uri.parse(getString(R.string.urlLicense));
-	    	               startActivity(new Intent("android.intent.action.VIEW", url));
-	    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	AlertDialog about = builder.create();
-	    	about.show();
+	    		startActivityForResult(about, 0);
+	    	}
+	    	catch(ActivityNotFoundException e) {
+	    		AlertDialog.Builder notFoundBuilder = new AlertDialog.Builder(this);
+	    		notFoundBuilder.setMessage(R.string.aboutNotFoundText)
+	    				.setTitle(R.string.aboutNotFoundTitle)
+	    				.setPositiveButton(R.string.commonYes, new DialogInterface.OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int id) {
+	    						try{
+	    							Intent getApp = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutMarket)));
+	    							startActivity(getApp);
+	    						}
+	    						catch(ActivityNotFoundException e) {
+	    							Intent getAppAlt = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutWeb)));
+	    							startActivity(getAppAlt);
+	    						}
+	    					}
+	    				})
+	    				.setNegativeButton(R.string.commonNo, new DialogInterface.OnClickListener() {
+	 	    	           public void onClick(DialogInterface dialog, int id) {
+	 	    	                dialog.cancel();
+	 	    	           }
+	 	    	       });
+	    		AlertDialog notFound = notFoundBuilder.create();
+	    		notFound.show();
+	    	}
 	    	return true;
 	    case R.id.menuHelp:
 	    	Toast.makeText(this, R.string.mainHelpTxt, Toast.LENGTH_SHORT).show();

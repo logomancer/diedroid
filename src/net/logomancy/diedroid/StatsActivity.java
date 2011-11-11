@@ -19,9 +19,9 @@ package net.logomancy.diedroid;
 import ec.util.MersenneTwisterFast;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -45,6 +45,8 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 
 	private Integer rollType = -1;
 	private Integer dropThreshold = 3;
+	private Integer dropBase = 3;
+	private SeekBar dropBar; 
 	MersenneTwisterFast Random = new MersenneTwisterFast();
 	
 	/** Called when the activity is first created. */
@@ -61,7 +63,7 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
         Button rollBtn = (Button) findViewById(R.id.statsRollButton);
         rollBtn.setOnClickListener(this);
         
-        SeekBar dropBar = (SeekBar) findViewById(R.id.statsDropBar);
+        dropBar = (SeekBar) findViewById(R.id.statsDropBar);
         dropBar.setOnSeekBarChangeListener(this);
     }
     
@@ -77,40 +79,34 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.menuAbout:
-	    	String version = null;
+	    	Intent about = new Intent("org.openintents.action.SHOW_ABOUT_DIALOG");
 	    	try {
-				version = getPackageManager().getPackageInfo("net.logomancy.diedroid", 0).versionName;
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			StringBuilder title = new StringBuilder();
-			title.append(getString(R.string.app_name));
-			title.append(" ");
-			title.append(version);
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.menuAboutText)
-	    	       .setTitle(title.toString())
-	    	       .setPositiveButton(R.string.menuAboutSiteBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                Uri url = Uri.parse(getString(R.string.urlWebsite));
-	    	                startActivity(new Intent("android.intent.action.VIEW", url));
-	    	                
-	    	           }
-	    	       })
-	    	       .setNeutralButton(R.string.menuAboutLicBtn, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   Uri url = Uri.parse(getString(R.string.urlLicense));
-	    	               startActivity(new Intent("android.intent.action.VIEW", url));
-	    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.commonClose, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	AlertDialog about = builder.create();
-	    	about.show();
+	    		startActivityForResult(about, 0);
+	    	}
+	    	catch(ActivityNotFoundException e) {
+	    		AlertDialog.Builder notFoundBuilder = new AlertDialog.Builder(this);
+	    		notFoundBuilder.setMessage(R.string.aboutNotFoundText)
+	    				.setTitle(R.string.aboutNotFoundTitle)
+	    				.setPositiveButton(R.string.commonYes, new DialogInterface.OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int id) {
+	    						try{
+	    							Intent getApp = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutMarket)));
+	    							startActivity(getApp);
+	    						}
+	    						catch(ActivityNotFoundException e) {
+	    							Intent getAppAlt = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.urlAboutWeb)));
+	    							startActivity(getAppAlt);
+	    						}
+	    					}
+	    				})
+	    				.setNegativeButton(R.string.commonNo, new DialogInterface.OnClickListener() {
+	 	    	           public void onClick(DialogInterface dialog, int id) {
+	 	    	                dialog.cancel();
+	 	    	           }
+	 	    	       });
+	    		AlertDialog notFound = notFoundBuilder.create();
+	    		notFound.show();
+	    	}
 	    	return true;
 	    case R.id.menuHelp:
 	    	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -132,7 +128,19 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		// just grabbing the selected position here; logic for this will be implemented in the roll button's click listener
-		rollType = pos;		
+		rollType = pos;
+		if (rollType == 2) { //4d6 + 14
+			dropBase = 15;
+			dropBar.setMax(5);
+			dropBar.setProgress(0);
+			onProgressChanged(dropBar, 0, false);
+		}
+		else {
+			dropBase = 3;
+			dropBar.setMax(15);
+			dropBar.setProgress(0);
+			onProgressChanged(dropBar, 0, false);
+		}
 	}
 
 	// stub required for the listener implementation
@@ -142,7 +150,7 @@ public class StatsActivity extends Activity implements OnItemSelectedListener, O
 	}
 	
 	public void onProgressChanged(SeekBar src, int progress, boolean FromUser) {
-		dropThreshold = progress + 3;
+		dropThreshold = progress + dropBase;
 		StringBuilder thresh = new StringBuilder();
 		thresh.append(dropThreshold);
 		TextView dropValue = (TextView) findViewById(R.id.statsDropVal);

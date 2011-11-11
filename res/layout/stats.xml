@@ -29,12 +29,12 @@
 		android:text="@string/statsResultTitle" android:layout_width="fill_parent"
 		android:layout_marginBottom="10dp" android:layout_below="@+id/statsHLine"
 		android:layout_alignLeft="@+id/statsHLine" android:layout_alignRight="@+id/statsHLine" />
-	<GridView android:gravity="center" android:layout_height="wrap_content"
+	<GridView android:gravity="center" android:layout_height="fill_parent"
 		android:isScrollContainer="true" android:focusable="false"
 		android:fitsSystemWindows="true" android:smoothScrollbar="true"
 		android:focusableInTouchMode="false" android:verticalSpacing="5sp"
 		android:id="@+id/statsResultsGrid" android:numColumns="3"
-		android:layout_width="wrap_content" android:layout_below="@+id/statsResultsTitle"
+		android:layout_width="fill_parent" android:layout_below="@+id/statsResultsTitle"
 		android:layout_alignLeft="@+id/statsResultsTitle"
 		android:layout_alignRight="@+id/statsResultsTitle" />
 	
