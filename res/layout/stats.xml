@@ -13,12 +13,14 @@
 		android:layout_height="wrap_content" android:id="@+id/statsDropBar"
 		android:progress="0" android:clickable="true" android:max="15"
 		android:layout_width="wrap_content" android:focusable="true"
-		android:layout_marginRight="4dp"
-		android:layout_below="@+id/statsDropCap" android:layout_alignLeft="@+id/statsDropCap" android:layout_marginTop="4dp" android:minWidth="264dp"/>
+		android:layout_marginRight="4dp" android:layout_below="@+id/statsDropCap"
+		android:layout_alignLeft="@+id/statsDropCap" android:layout_marginTop="4dp"
+		android:minWidth="264dp" />
 	<Button android:layout_height="wrap_content" android:textSize="32dp"
 		android:fitsSystemWindows="true" android:id="@+id/statsRollButton"
-		android:layout_marginTop="10dp" android:layout_width="fill_parent" android:layout_marginBottom="5dp"
-		android:layout_below="@+id/statsDropBar" android:layout_alignLeft="@+id/statsDropBar" android:text="@string/commonRoll"/>
+		android:layout_marginTop="10dp" android:layout_width="fill_parent"
+		android:layout_marginBottom="5dp" android:layout_below="@+id/statsDropBar"
+		android:layout_alignLeft="@+id/statsDropBar" android:text="@string/commonRoll" />
 	<View android:background="#ababab" android:layout_height="5dp"
 		android:id="@+id/statsHLine" android:layout_width="wrap_content"
 		android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
@@ -37,11 +39,9 @@
 		android:layout_width="fill_parent" android:layout_below="@+id/statsResultsTitle"
 		android:layout_alignLeft="@+id/statsResultsTitle"
 		android:layout_alignRight="@+id/statsResultsTitle" />
-	
-
-
-
-
-
-<TextView android:layout_height="wrap_content" android:id="@+id/statsDropVal" android:text="3" android:textStyle="bold" android:layout_width="wrap_content" android:layout_alignParentRight="true" android:layout_marginRight="4dp" android:layout_alignTop="@id/statsDropCap" android:textSize="36dp" android:layout_marginTop="16dp"></TextView>
+	<TextView android:layout_height="wrap_content" android:id="@+id/statsDropVal"
+		android:text="3" android:textStyle="bold" android:layout_width="wrap_content"
+		android:layout_alignParentRight="true" android:layout_marginRight="4dp"
+		android:layout_alignTop="@id/statsDropCap" android:textSize="36dp"
+		android:layout_marginTop="16dp" />
 </RelativeLayout>
