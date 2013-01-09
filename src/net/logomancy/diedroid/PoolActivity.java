@@ -16,44 +16,36 @@
 
 package net.logomancy.diedroid;
 
-import ec.util.MersenneTwisterFast;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import net.logomancy.diedroid.DiceSpinListener;
 import net.logomancy.diedroid.PoolDialog;
+import net.logomancy.diedroid.DieGroup;
+import net.logomancy.diedroid.RollResult;
 
 public class PoolActivity extends Activity implements OnClickListener {
 	DiceSpinListener misc = new DiceSpinListener(); // needed for implementation of dice spinner listener
-	MersenneTwisterFast Random = new MersenneTwisterFast();
+	DieGroup pool = new DieGroup();
 	Integer winValue = 0;
 	Integer failValue = 0;
 	Button winButton;
 	Button failButton;
-	
-	static class ViewHandler {
-		TextView text;
-	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,49 +102,6 @@ public class PoolActivity extends Activity implements OnClickListener {
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
-	}
-	
-	class ColorAdapter extends ArrayAdapter<Integer> {
-		Integer win;
-		Integer fail;
-		
-		ColorAdapter(Context con, int tvResID, Integer[] array, Integer success, Integer failure) {
-			super(con, tvResID, array);
-			win = success;
-			fail = failure;
-		}
-		
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHandler hand;
-			Integer val = getItem(position);
-			LayoutInflater inflater = getLayoutInflater();
-			
-			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.diegridsquare, parent, false);
-				
-				hand = new ViewHandler();
-				hand.text = (TextView) convertView.findViewById(R.id.poolDieGridSquare);
-				
-				convertView.setTag(hand);
-			}
-			else {
-				hand = (ViewHandler) convertView.getTag();
-			}
-			
-			hand.text.setText(val.toString());
-						
-			if (win > 0 && val >= win) {
-				hand.text.setTextColor(Color.GREEN);
-			}
-			else if (fail > 0 && val <= fail) {
-				hand.text.setTextColor(Color.RED);
-			}
-			else if (fail > 0 || win > 0) {
-				hand.text.setTextColor(Color.DKGRAY);
-			}
-			
-			return convertView;
-		}
 	}
 	
 	protected Dialog onCreateDialog(int id) {
@@ -225,10 +174,7 @@ public class PoolActivity extends Activity implements OnClickListener {
 	public void roll() {
 		Integer numDice = -1;
 		Integer numSides = -1;
-		Integer temp = -2;
-		Integer successes = 0;
-		Integer failures = 0;
-		Integer[] diceArray;
+		RollResult poolResult;
 		
 		// capture text boxes
 		TextView tNumDice = (TextView) findViewById(R.id.poolDiceNum);
@@ -262,23 +208,20 @@ public class PoolActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, R.string.errorWinFailOverlap, Toast.LENGTH_SHORT).show();
 		}
 		else {
-			diceArray = new Integer[numDice];
-			Integer i;
-			// roll the dice
-			for(i = 0; i < numDice; i++) {
-				temp = Random.nextInt(numSides) + 1;
-				if(temp <= failValue) {failures++;}
-				else if((winValue > 0) && (temp >= winValue)) {successes++;}
-				diceArray[i] = temp;
-			}
+			pool.Quantity = numDice;
+			pool.Sides = numSides;
+			pool.winThreshold = winValue;
+			pool.failThreshold = failValue;
 			
+			poolResult = pool.roll();
+						
 			// capture the GridView for the dice and attach an adapter based on the array of dice we just rolled
 			GridView diceGrid = (GridView) findViewById(R.id.poolResultsGrid);
-			diceGrid.setAdapter(new ColorAdapter(this, R.id.poolDieGridSquare, diceArray, winValue, failValue));
+			diceGrid.setAdapter(new DiceAdapter(this, this, R.id.poolDieGridSquare, poolResult));
 			
 			// pop up a Toast stating the number of failures and successes
-			numWinsText.setText(Integer.toString(successes));
-			numFailsText.setText(Integer.toString(failures));
+			numWinsText.setText(Integer.toString(poolResult.numWins));
+			numFailsText.setText(Integer.toString(poolResult.numFails));
 		}
 		
 	}

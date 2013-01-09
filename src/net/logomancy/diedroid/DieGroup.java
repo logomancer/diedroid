@@ -1,32 +1,35 @@
 package net.logomancy.diedroid;
 
 import ec.util.MersenneTwisterFast;
-import android.content.ContentValues;
 
 public class DieGroup {
-	protected int Quantity;
-	protected int Sides;
-	protected int Adder;
-	protected int Multiplier;
-	protected MersenneTwisterFast Randomizer;
+	protected Integer Quantity = 0;
+	protected Integer Sides = 2;
+	protected Integer Adder = 0;
+	protected Integer Multiplier = 1;
+	protected Integer winThreshold = 0;
+	protected Integer failThreshold = 0;
+	protected Integer[] Rolls;
+	protected MersenneTwisterFast Randomizer = new MersenneTwisterFast();	
 	
-	public static final String COLUMN_NAME_SIDES = "sides";
-	public static final String COLUMN_NAME_DICE = "quantity";
-	public static final String COLUMN_NAME_ADD = "add";
-	public static final String COLUMN_NAME_MULTIPLY = "mult";
-	
-	
-	protected int roll() {
-		int Total = 0;
+	protected RollResult roll() {
+		Integer total = 0;
+		Integer wins = 0;
+		Integer fails = 0;
+		Rolls = new Integer[Quantity];
+		
 		if(Quantity > 0) {
 			int i;
 			for (i = 0; i < Quantity; i++) {
-				Total += Randomizer.nextInt(Sides) + 1;
+				Rolls[i] = Randomizer.nextInt(Sides) + 1;
+				total += Rolls[i];
+				if((winThreshold > 0) && (Rolls[i] >= winThreshold)) {wins++;}
+				if((failThreshold > 0) && (Rolls[i] <= failThreshold)) {fails++;}
 			}
 		}
-		Total *= Multiplier;			
-		Total += Adder;
-		return Total;
+		total *= Multiplier;			
+		total += Adder;
+		return new RollResult(this.getString(), Rolls, total, winThreshold, failThreshold, wins, fails);
 	}
 	
 	public String getString() {
@@ -44,16 +47,23 @@ public class DieGroup {
 		}
 		return DieString.toString();
 	}
-	
-	ContentValues toRecord() {
-		ContentValues values = new ContentValues();
-		values.put(COLUMN_NAME_DICE, Quantity);
-		values.put(COLUMN_NAME_SIDES, Sides);
-		values.put(COLUMN_NAME_ADD, Adder);
-		values.put(COLUMN_NAME_MULTIPLY, Multiplier);
-		return values;
-	}
 
+	protected DieGroup(int NumDice, int NumSides, int Add, int Multiply, int Win, int Fail) {
+		if (NumDice < 0) {
+			Quantity = 0;
+		}
+		else {
+			Quantity = NumDice;
+		}
+		if (NumSides > 2) {
+			Sides = NumSides;
+		}		
+		Adder = Add;
+		Multiplier = Multiply;
+		if (Win > 0) {winThreshold = Win;}
+		if (Fail > 0) {failThreshold = Fail;}
+	}
+	
 	protected DieGroup(int NumDice, int NumSides, int Add, int Multiply) {
 		if (NumDice < 0) {
 			Quantity = 0;
@@ -61,23 +71,23 @@ public class DieGroup {
 		else {
 			Quantity = NumDice;
 		}
-		if (NumSides < 2) {
-			Sides = 2;
-		}
-		else {
+		if (NumSides > 2) {
 			Sides = NumSides;
-		}
-		
+		}		
 		Adder = Add;
 		Multiplier = Multiply;
-		Randomizer = new MersenneTwisterFast();
+	}
+	
+	protected DieGroup(int NumDice, int NumSides) {
+		if (NumDice > 0) {
+			Quantity = NumDice;
+		}
+		if (NumSides > 2) {
+			Sides = NumSides;
+		}
 	}
 	
 	protected DieGroup() {
-		Quantity = 0;
-		Sides = 0;
-		Adder = 0;
-		Multiplier = 1;
-		Randomizer = new MersenneTwisterFast();
+		
 	}
 }

@@ -118,7 +118,7 @@ public class RollActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, R.string.errorNotEnoughDice, Toast.LENGTH_SHORT).show();
 		}
 		else {
-			int diceTotal = Die.roll();
+			Integer diceTotal = Die.roll().total;
 			
 			// capture TextView for result and output total
 			TextView grandTotal = (TextView) findViewById(R.id.rollResult);
