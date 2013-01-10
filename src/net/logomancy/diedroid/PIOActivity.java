@@ -1,23 +1,24 @@
 package net.logomancy.diedroid;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuInflater;
+
 import ec.util.MersenneTwisterFast;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class PIOActivity extends Activity implements OnClickListener{
+public class PIOActivity extends SherlockActivity implements OnClickListener{
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class PIOActivity extends Activity implements OnClickListener{
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
+	    MenuInflater inflater = getSupportMenuInflater();
 	    inflater.inflate(R.menu.optionmenu, menu);
 	    return true;
 	}

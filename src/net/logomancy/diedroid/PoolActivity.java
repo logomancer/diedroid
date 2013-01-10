@@ -16,7 +16,11 @@
 
 package net.logomancy.diedroid;
 
-import android.app.Activity;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuInflater;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -24,9 +28,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -39,7 +40,7 @@ import net.logomancy.diedroid.PoolDialog;
 import net.logomancy.diedroid.DieGroup;
 import net.logomancy.diedroid.RollResult;
 
-public class PoolActivity extends Activity implements OnClickListener {
+public class PoolActivity extends SherlockActivity implements OnClickListener {
 	DiceSpinListener misc = new DiceSpinListener(); // needed for implementation of dice spinner listener
 	DieGroup pool = new DieGroup();
 	Integer winValue = 0;
@@ -49,7 +50,7 @@ public class PoolActivity extends Activity implements OnClickListener {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
+	    MenuInflater inflater = getSupportMenuInflater();
 	    inflater.inflate(R.menu.optionmenu, menu);
 	    return true;
 	}

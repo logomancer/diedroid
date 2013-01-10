@@ -16,16 +16,17 @@
 
 package net.logomancy.diedroid;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuInflater;
+
 import android.net.Uri;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,13 +35,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import net.logomancy.diedroid.DiceSpinListener;
 
-public class RollActivity extends Activity implements OnClickListener {
+public class RollActivity extends SherlockActivity implements OnClickListener {
 	DiceSpinListener misc = new DiceSpinListener(); // need this to implement the dice spinner listener
 	DieGroup Die = new DieGroup();
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
+	    MenuInflater inflater = getSupportMenuInflater();
 	    inflater.inflate(R.menu.optionmenu, menu);
 	    return true;
 	}
