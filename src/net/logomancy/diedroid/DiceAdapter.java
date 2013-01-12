@@ -1,8 +1,6 @@
 package net.logomancy.diedroid;
 
 import net.logomancy.diedroid.R;
-import net.logomancy.diedroid.R.id;
-import net.logomancy.diedroid.R.layout;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;

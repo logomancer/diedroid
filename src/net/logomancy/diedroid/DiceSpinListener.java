@@ -23,7 +23,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class DiceSpinListener implements OnItemSelectedListener {
 
 	private int selectionValue = -1;
-	private final int[] VALUES = {2, 3, 4, 6, 8, 10, 12, 20, 100};
+	private final int[] VALUES = {2, 3, 4, 6, 8, 10, 12, 20, 30, 100};
     
 	// this is the event callback for the dice sides spinner used in multiple activities.
     public void onItemSelected(AdapterView<?> parent,

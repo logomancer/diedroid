@@ -94,47 +94,34 @@ public class PIOActivity extends SherlockActivity implements OnClickListener{
 		int howMany = v.getId();
 		if (howMany != -1) {
 			MersenneTwisterFast Random = new MersenneTwisterFast();
-			Integer[] diceArray = new Integer[3];
-			Integer[] resArray = new Integer[3];
-			resArray[0] = R.id.pioDieOne;
-			resArray[1] = R.id.pioDieTwo;
-			resArray[2] = R.id.pioDieThree;
+			Integer blank = R.color.Black;
+			Integer[] OPS = {
+					R.drawable.pio_left,
+					R.drawable.pio_nop,
+					R.drawable.pio_in,
+					R.drawable.pio_nop,
+					R.drawable.pio_right,
+					R.drawable.pio_nop
+					};
+			ImageView imgOne = (ImageView) findViewById(R.id.pioDieOne);
+			ImageView imgTwo = (ImageView) findViewById(R.id.pioDieTwo);
+			ImageView imgThree = (ImageView) findViewById(R.id.pioDieThree);
 			switch(howMany) {
 			case R.id.pioOneDieBtn: // roll one die
-				diceArray[0] = 0;
-				diceArray[1] = Random.nextInt(6) + 1;
-				diceArray[2] = 0;
+				imgOne.setImageResource(blank);
+				imgTwo.setImageResource(OPS[Random.nextInt(6)]);
+				imgThree.setImageResource(blank);
 				break;
 			case R.id.pioTwoDiceBtn: // roll two dice
-				diceArray[0] = Random.nextInt(6) + 1;
-				diceArray[1] = 0;
-				diceArray[2] = Random.nextInt(6) + 1;
+				imgOne.setImageResource(OPS[Random.nextInt(6)]);
+				imgTwo.setImageResource(blank);
+				imgThree.setImageResource(OPS[Random.nextInt(6)]);
 				break;
 			default: // roll three dice
-				diceArray[0] = Random.nextInt(6) + 1;
-				diceArray[1] = Random.nextInt(6) + 1;
-				diceArray[2] = Random.nextInt(6) + 1;
+				imgOne.setImageResource(OPS[Random.nextInt(6)]);
+				imgTwo.setImageResource(OPS[Random.nextInt(6)]);
+				imgThree.setImageResource(OPS[Random.nextInt(6)]);
 				break;
-			}
-			for (int i = 0; i < 3; i++) {
-				ImageView img = (ImageView) findViewById(resArray[i]);
-				switch(diceArray[i]) {
-				case 0: // blank
-					img.setImageResource(R.color.Black);
-					break;
-				case 1: // pass left
-					img.setImageResource(R.drawable.pio_left);
-					break;
-				case 3: // pass in
-					img.setImageResource(R.drawable.pio_in);
-					break;
-				case 5: // pass right
-					img.setImageResource(R.drawable.pio_right);
-					break;
-				default: // do nothing
-					img.setImageResource(R.drawable.pio_nop);
-					break;
-				}
 			}			
 		}
 		else {

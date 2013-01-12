@@ -13,7 +13,8 @@
 		<item>d10</item>
 		<item>d12</item>
 		<item>d20</item>
-		<item>d100</item>
+		<item>d30</item><item>d100</item>
+		
 	</string-array>
 	<string-array name="activityListChoices">
 		<item>Dice Roller</item>

@@ -23,7 +23,6 @@ import com.actionbarsherlock.view.MenuInflater;
 
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
