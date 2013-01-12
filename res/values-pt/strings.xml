@@ -48,17 +48,6 @@
   <string name="commonDisabled">Desativado</string>
   <string name="poolOrMore">ou maior</string>
   <string name="poolOrLess">ou menor</string>
-  <string-array name="sidesArray">
-    <item>d2</item>
-    <item>d3</item>
-    <item>d4</item>
-    <item>d6</item>
-    <item>d8</item>
-    <item>d10</item>
-    <item>d12</item>
-    <item>d20</item>
-    <item>d100</item>
-  </string-array>
   <string-array name="activityListChoices">
     <item>Jogador de Dados</item>
     <item>Jogador por Pontuação de Habilidade</item>
