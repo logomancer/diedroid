@@ -63,7 +63,7 @@
 	<string name="commonYes">Yes</string>
 	<string name="commonNo">No</string>
 	<string name="urlAboutMarket">market://details?id=org.openintents.about</string>
-	<string name="urlAboutWeb">http://www.openintents.org/en/node/202</string>
+	<string name="urlAboutWeb">http://f-droid.org/repository/browse/?fdfilter=about&amp;fdid=org.openintents.about</string>
 	<string-array name="aboutAuthors">
 		<item>Andrew Mike\nlogomancer@gmail.com</item>
 	</string-array>
