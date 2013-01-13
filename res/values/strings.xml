@@ -57,7 +57,7 @@
 	<string name="commonThree">3</string>
 	<string name="aboutEmail">logomancer@gmail.com</string>
 	<string name="aboutSiteLabel">DieDroid at Google Code</string>
-	<string name="aboutCopyright">Copyright © 2010-2011 Andrew Mike</string>
+	<string name="aboutCopyright">Copyright © 2010-2013 Andrew Mike</string>
 	<string name="aboutNotFoundTitle">OI About Not Found</string>
 	<string name="aboutNotFoundText">We were unable to find OI About, which is required for the about dialog. Would you like to download it now?</string>
 	<string name="commonYes">Yes</string>
