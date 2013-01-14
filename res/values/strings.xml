@@ -47,7 +47,7 @@
 	<string name="menuHelpDice">This is a polyhedral dice roller. When the <b>Roll</b> button is pressed, the total calculated using the formula\n\n<b>AdB + C * D</b>\n\nwhere <b>A</b> is the number of dice rolled and <b>B</b> are the number of sides on each die.\n\n<b>C</b> will be added to the result <i>before</i> being multiplied by <b>D</b>.</string>
 	<string name="commonClose">Close</string>
 	<string name="urlLicense">http://www.gnu.org/licenses/gpl-3.0-standalone.html</string>
-	<string name="urlWebsite">https://code.google.com/p/diedroid/</string>
+	<string name="urlWebsite">https://github.com/logomancer/diedroid</string>
 	<string name="pioDiceCaptionStr">Dice:</string>
 	<string name="pioErrNoDice">Please select one, two, or three dice.</string>
 	<string name="mainHelpTxt">Select a task from the menu.</string>
@@ -56,7 +56,7 @@
 	<string name="commonTwo">2</string>
 	<string name="commonThree">3</string>
 	<string name="aboutEmail">logomancer@gmail.com</string>
-	<string name="aboutSiteLabel">DieDroid at Google Code</string>
+	<string name="aboutSiteLabel">DieDroid at Github</string>
 	<string name="aboutCopyright">Copyright © 2010-2013 Andrew Mike</string>
 	<string name="aboutNotFoundTitle">OI About Not Found</string>
 	<string name="aboutNotFoundText">We were unable to find OI About, which is required for the about dialog. Would you like to download it now?</string>
