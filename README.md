@@ -8,7 +8,5 @@ All non-code assets produced by me fall under a [Creative Commons BY-SA 3.0 lice
 
 The MersenneTwisterFast class was written by Sean Luke and is available under a [3-clause BSD license](http://www.cs.gmu.edu/~sean/research/).
 
-The ActionBarSherlock library was written by Jake Wharton and is available under an [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
-
 #### Build Instructions
-Building DieDroid requires a copy of the Android SDKs (specifically those for Ice Cream Sandwich) and the [ActionBarSherlock](http://actionbarsherlock.com) library.
+Building DieDroid requires a copy of the Android SDKs (specifically those for Ice Cream Sandwich) and the Android support libraries (specifically, v4 and v7-appcompat).
