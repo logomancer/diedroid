@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <EditText
+        android:id="@+id/poolDiceNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="60dp"
+        android:inputType="number"
+        android:isScrollContainer="true"
+        android:minEms="2"
+        android:selectAllOnFocus="true"
+        android:text="1"
+        android:textSize="32dp" />
+
+    <Spinner
+        android:id="@+id/poolDiceSides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/poolDiceNum"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="60dp"
+        android:entries="@array/sidesArray"
+        android:isScrollContainer="true"
+        android:prompt="@string/sidesSpinPrompt" />
+
+    <TextView
+        android:id="@+id/poolWin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/poolWinButton"
+        android:layout_alignParentLeft="false"
+        android:layout_below="@id/poolDiceNum"
+        android:text="0"
+        android:textColor="@color/Green"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/poolWinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/poolWin"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/poolWin"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/poolSuccesses"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@id/poolWinButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/poolWin"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/commonDisabled" />
+
+    <TextView
+        android:id="@+id/poolFail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/poolWin"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/poolFailText"
+        android:text="0"
+        android:textColor="@color/Red"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@id/poolFailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/poolWin"
+        android:layout_alignRight="@+id/poolFailButton"
+        android:layout_below="@id/poolDiceNum"
+        android:layout_marginRight="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/poolFailures"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@id/poolFailButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/poolWinButton"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/commonDisabled" />
+
+    <Button
+        android:id="@+id/poolRollButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/poolWinButton"
+        android:nextFocusUp="@id/poolWin"
+        android:text="@string/commonRoll"
+        android:textSize="32dp" />
+
+    <View
+        android:id="@+id/poolHLine"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_below="@id/poolRollButton"
+        android:background="#ababab" />
+
+    <TextView
+        android:id="@+id/poolResultsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/poolHLine"
+        android:text="@string/poolResultsTitleStr"
+        android:textSize="35dp" />
+
+    <GridView
+        android:id="@+id/poolResultsGrid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/poolResultsTitle"
+        android:fitsSystemWindows="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:isScrollContainer="true"
+        android:numColumns="5"
+        android:smoothScrollbar="true"
+        android:verticalSpacing="5dp" />
+
+</RelativeLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/rollResultTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/rollResultTitleStr"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/rollResult"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:textSize="120dp" />
+
+    <LinearLayout
+        android:id="@+id/rollDieLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10sp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/rollNumDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:inputType="number"
+            android:minEms="1"
+            android:nextFocusDown="@+id/rollSidesSpin"
+            android:nextFocusRight="@id/rollSidesSpin"
+            android:selectAllOnFocus="true"
+            android:text="1"
+            android:textSize="30dp" />
+
+        <Spinner
+            android:id="@id/rollSidesSpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:entries="@array/sidesArray"
+            android:minHeight="30dp"
+            android:nextFocusDown="@+id/rollAdd"
+            android:nextFocusLeft="@id/rollNumDice"
+            android:nextFocusRight="@id/rollAdd"
+            android:nextFocusUp="@id/rollNumDice"
+            android:prompt="@string/sidesSpinPrompt"
+            android:saveEnabled="true" />
+
+        <TextView
+            android:id="@+id/rollDiePlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:focusable="false"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@id/rollAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:inputType="numberSigned"
+            android:minEms="1"
+            android:nextFocusDown="@+id/rollMult"
+            android:nextFocusLeft="@id/rollSidesSpin"
+            android:nextFocusRight="@id/rollMult"
+            android:nextFocusUp="@id/rollSidesSpin"
+            android:selectAllOnFocus="true"
+            android:text="0"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/rollDieTimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:focusable="false"
+            android:text="x"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@id/rollMult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberSigned"
+            android:minEms="1"
+            android:nextFocusDown="@+id/rollRollButton"
+            android:nextFocusLeft="@id/rollAdd"
+            android:nextFocusRight="@id/rollRollButton"
+            android:nextFocusUp="@id/rollAdd"
+            android:selectAllOnFocus="true"
+            android:text="1"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@id/rollRollButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:nextFocusLeft="@id/rollMult"
+        android:nextFocusUp="@id/rollMult"
+        android:text="@string/commonRoll"
+        android:textSize="36dp" />
+</LinearLayout>

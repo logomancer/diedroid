@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:diedroid="http://schemas.android.com/apk/res-auto" >
+<item android:title="@string/menuAbout" android:icon="@drawable/ic_menu_about" android:id="@+id/menuAbout" diedroid:showAsAction="ifRoom|withText"></item>
+<item android:id="@+id/menuHelp" android:title="@string/menuHelp" android:icon="@drawable/ic_menu_help" diedroid:showAsAction="ifRoom|withText"></item>
+</menu>

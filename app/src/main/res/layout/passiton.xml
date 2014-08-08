@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/pioDieOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:minHeight="96dp"
+            android:minWidth="96dp"
+            android:src="@color/Transparent" />
+
+        <ImageView
+            android:id="@+id/pioDieTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:minHeight="96dp"
+            android:minWidth="96dp"
+            android:src="@color/Transparent" />
+
+        <ImageView
+            android:id="@+id/pioDieThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:minHeight="96dp"
+            android:minWidth="96dp"
+            android:src="@color/Transparent" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/pioDiceCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/pioDiceCaptionStr"
+            android:textSize="32dp" />
+
+        <Button
+            android:id="@+id/pioOneDieBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pioDiceCaption"
+            android:layout_below="@+id/pioDiceCaption"
+            android:layout_marginRight="16dp"
+            android:minWidth="72dp"
+            android:text="@string/commonOne"
+            android:textSize="64dp" />
+
+        <Button
+            android:id="@+id/pioTwoDiceBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/pioOneDieBtn"
+            android:layout_alignTop="@+id/pioOneDieBtn"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/pioOneDieBtn"
+            android:minWidth="72dp"
+            android:text="@string/commonTwo"
+            android:textSize="64dp" />
+
+        <Button
+            android:id="@+id/pioThreeDiceBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/pioTwoDiceBtn"
+            android:layout_alignTop="@+id/pioTwoDiceBtn"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/pioTwoDiceBtn"
+            android:minWidth="72dp"
+            android:text="@string/commonThree"
+            android:textSize="64dp" />
+    </RelativeLayout>
+</LinearLayout>
