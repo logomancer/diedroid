@@ -1,3 +1,6 @@
+
+**This repository has been migrated to a self-hosted git instance, located [here](https://code.7thmagic.net/logomancer/diedroid). There will be no further activity on this repository.**
+
 ## DieDroid, an Android application for rolling dice
 
 This is an Android application for a dice roller suitable for many different purposes, but was designed as a tool for pen-and-paper RPGs. Includes a general dice roller, a dice pool roller that counts successes, and an ability score roller to roll stats for characters.
